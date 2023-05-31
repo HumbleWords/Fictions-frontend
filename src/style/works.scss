@@ -1,0 +1,16 @@
+$darkblue: #334170;
+$blue: #37598c;
+$greyblue: #d5e2ff;
+$white: white;
+
+.page {
+    overflow: hidden;
+    padding-left: 60px;
+    padding-top: 50px;
+}
+
+@media screen and (max-width:800px) {
+    .page {
+        padding-left: 0;
+    }
+}

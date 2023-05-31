@@ -1,0 +1,35 @@
+$darkblue: #334170;
+$greyblue: #d5e2ff;
+$white: white;
+
+.footer {
+  padding-left: 60px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  background-color: $darkblue;
+  align-items: stretch;
+  justify-content: space-evenly;
+  flex-direction: column;
+
+  h1 {
+    color: $greyblue;
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  .text {
+    color: $greyblue;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    padding-left: 0;
+  }
+}

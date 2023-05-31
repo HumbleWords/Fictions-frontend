@@ -1,0 +1,473 @@
+$darkblue: #334170;
+$blue: #37598c;
+$greyblue: #d5e2ff;
+$white: white;
+
+@font-face {
+  font-family: fontss;
+  src: url(../../src/assets/fonts/fontss.ttf);
+}
+
+// body {
+//   // background-color: $darkblue;
+// }
+
+.main {
+  // отступ содержимого
+  overflow: hidden;
+  margin-left: 0;
+  // padding-top: 50px;
+  // padding-left: 60px;
+
+  .backgraund {
+    background-image: url("../../src/assets/images/backgraund.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 10;
+
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all 0.9s;
+    // padding-bottom: 30px;
+    // margin-bottom: 30px;
+  }
+
+  // Слайдер
+  .news {
+    padding-left: 60px;
+    background-color: $darkblue;
+    margin-top: 90px;
+    height: 65vh;
+    width: 100%;
+    outline: solid 1px $darkblue;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .header {
+    font-family: fontss;
+
+    color: $white;
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+
+  .carousel {
+    // width: 50vw;
+    top: 0;
+    height: 50vh;
+    text-align: left;
+    display: flex;
+    transition: all 0.3s;
+
+    button {
+      opacity: 0;
+    }
+
+    .card {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-left: 4vw;
+      padding-right: 4vw;
+      margin-top: 3vh;
+      width: 60vw;
+      height: 40vh;
+      border-radius: 15px;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      // position: relative;
+
+      .title {
+        color: $darkblue;
+      }
+
+      .text {
+        overflow-x: hidden;
+        height: 15vh;
+        width: 35vw;
+        word-break: break-all;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .image {
+        margin-left: -10px;
+        object-fit: cover;
+        // object-position: center center;
+        // position: absolute;
+        // height: 30vh;
+        // width: 10vw;
+        height: 30vh;
+        width: 180px;
+        border-radius: 10px;
+        // padding: 5px 0 0 5px;
+        // position: center center;
+        // background-size: cover;
+        // background-attachment: fixed;
+      }
+    }
+
+    h1 {
+      color: $white;
+      font-size: 20px;
+    }
+  }
+
+  // Поиск
+  .search {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+
+    background-color: $white;
+    border-radius: 25px;
+    margin: 40px 25% 40px 25%;
+
+    input {
+      border-radius: 25px;
+      border: none;
+      padding: 15px;
+      justify-content: flex-start;
+
+      outline: none;
+      display: block;
+      width: 95%;
+      height: 40px;
+    }
+
+    // input[type="search"]::-webkit-search-cancel-button {
+    //   -webkit-appearance:button;
+    //   color:black;
+    // }
+
+    button {
+      display: flex;
+      outline: none;
+      border: none;
+      background: none;
+      padding: 3px 10px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  // Приглашение (регистрация/авторизация)
+  .call {
+    padding-left: 60px;
+    padding-bottom: 40px;
+
+    .card {
+      background-color: $greyblue;
+      margin-left: auto;
+      margin-right: auto;
+      height: 30vh;
+      width: 75vw;
+      border-radius: 15px;
+      overflow: hidden;
+
+      .title {
+        color: $darkblue;
+      }
+
+      .text {
+        color: $blue;
+      }
+
+      span {
+        display: block;
+        background-color: $blue;
+        width: 100%;
+        height: 1px;
+      }
+
+      .button {
+        background-color: $darkblue;
+        padding: 5px 5vw 5px 5vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        // width: 20vw;
+        border-radius: 10px;
+        border: none;
+        overflow: hidden;
+        display: inline-block;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+
+        .text {
+          text-decoration: none;
+          color: $white;
+          overflow-wrap: normal;
+        }
+      }
+    }
+  }
+
+  // Фандомы
+  .fandom {
+    padding-left: 60px;
+    padding-bottom: 50px;
+
+    .card {
+      background-color: $greyblue;
+      margin-left: auto;
+      margin-right: auto;
+      height: 30vh;
+      width: 75vw;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      border-radius: 15px;
+
+      .title {
+        list-style-position: inside;
+        color: $darkblue;
+      }
+
+      .text {
+        color: $blue;
+        flex-direction: column;
+        column-count: 2;
+        column-gap: 10%;
+        list-style-type: decimal;
+        text-align: left;
+        // overflow-x: hidden;
+        // overflow: auto;
+
+        .link {
+          padding: 5px 0 5px 0;
+        }
+      }
+
+      span {
+        display: block;
+        background-color: $blue;
+        width: 100%;
+        height: 1px;
+      }
+    }
+  }
+}
+
+// ---------------WIDTH---------------------
+
+@media screen and (max-width: 800px) {
+  .main {
+    .backgraund {
+      padding-top: 25px;
+    }
+
+    .news {
+      height: 45vh;
+      padding-left: 0;
+    }
+
+    .carousel {
+      height: 30vh;
+
+      .card {
+        margin-top: 3vh;
+        width: 55vw;
+        height: 25vh;
+
+        .image {
+          margin-top: 7px;
+          margin-left: -10px;
+          height: 22vh;
+          width: 130px;
+        }
+      }
+    }
+
+    .search {
+      padding-left: 0;
+    }
+
+    .call {
+      padding-left: 0;
+    }
+
+    .fandom {
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .main {
+    .backgraund {
+      padding-top: 20px;
+    }
+
+    .carousel {
+      .card {
+        width: 65vw;
+        .image {
+          margin-left: -7px;
+          margin-top: 15px;
+          height: 20vh;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .menu {
+    .carousel {
+      .card {
+        width: 50vw;
+        height: 35vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 349px) {
+  .menu {
+    .carousel {
+      .card {
+        width: 50vw;
+        height: 60vh;
+      }
+    }
+  }
+}
+
+// ---------------HEIGHT---------------------
+
+@media screen and (max-height: 700px) {
+  .main {
+    .news {
+      margin-top: 50px;
+      height: 50vh;
+    }
+
+    .carousel {
+      .card {
+        height: 25vh;
+        width: 55vw;
+
+        .image {
+          margin-top: 5px;
+          height: 23vh;
+          width: 120px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .main {
+    .news {
+      margin-top: 50px;
+      height: 50vh;
+    }
+
+    .carousel {
+      .card {
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .main {
+    .news {
+      height: 52vh;
+    }
+
+    .carousel {
+      .card {
+        width: 60vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 565px) {
+  .main {
+    .news {
+      height: 53vh;
+    }
+
+    .carousel {
+      .card {
+        height: 30vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 540px) {
+  .main {
+    .news {
+      height: 55vh;
+    }
+
+    .carousel {
+      button {
+        position: relative;
+        bottom: 50px;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .main {
+    .news {
+      height: 60vh;
+    }
+
+    .carousel {
+      .card {
+        height: 30vh;
+      }
+
+      button {
+        position: relative;
+        bottom: 35px;
+      }
+    }
+  }
+}
+
+@media screen and (max-height: 440px) {
+  .main {
+    .news {
+      height: 75vh;
+    }
+
+    .carousel {
+      .card {
+        height: 32vh;
+      }
+    }
+  }
+}
+
+// * {
+//   // выделение эелементов
+//   outline: solid 1px red;
+// }
