@@ -3,14 +3,150 @@ $blue: #37598c;
 $greyblue: #d5e2ff;
 $white: white;
 
-.page {
-    overflow: hidden;
-    padding-left: 60px;
-    padding-top: 50px;
+.work-page {
+  // overflow: hidden;
+  padding-left: 60px;
+  padding-top: 50px;
+  background-color: $greyblue;
+  height: auto;
+  padding-bottom: 20px;
+  overflow: hidden;
+
+  .list {
+    margin-top: 20px;
+    ul {
+      .card {
+        width: 50vw;
+        // height: auto;
+        height: 35.5vh;
+        margin-top: 20px;
+        border-radius: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        &:hover {
+          height: auto;
+        }
+
+        img {
+          width: 150px;
+          height: auto;
+          border-radius: 10px;
+          cursor: pointer;
+
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .container {
+          height: 29vh;
+          display: -webkit-box;
+          -webkit-line-clamp: 8;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+
+          &:hover {
+            height: auto;
+            display: block;
+          }
+
+          .title {
+            color: $darkblue;
+            text-decoration: none;
+            margin-left: 30px;
+            cursor: pointer;
+          }
+
+          .desc {
+            // float: left;
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+
+  .sort {
+    margin-top: 20px;
+    margin-right: 20px;
+    .card {
+      width: auto;
+      height: auto;
+      border-radius: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      .title {
+        color: $darkblue;
+      }
+
+      .form {
+        .line {
+          padding-bottom: 20px;
+        }
+
+        .button {
+          width: auto;
+          color: $white;
+          border: none;
+          border-radius: 15px;
+          background-color: $darkblue;
+          display: block;
+          // margin-left: auto;
+          // margin-right: auto;
+        }
+      }
+    }
+  }
+
+  .workone {
+    .card {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 90vw;
+      height: auto;
+      border-radius: 20px;
+
+      img {
+        width: 250px;
+        height: auto;
+        border-radius: 15px;
+      }
+
+      .container {
+        margin-top: -6px;
+        align-items: flex-start;
+
+        .title {
+          color: $darkblue;
+          text-decoration: none;
+          margin-left: 30px;
+        }
+
+        .desc {
+          // float: left;
+          color: $blue;
+        }
+      }
+    }
+  }
 }
 
-@media screen and (max-width:800px) {
-    .page {
-        padding-left: 0;
+@media screen and (max-width: 800px) {
+  .work-page {
+    padding-left: 0;
+    .list {
+      ul {
+        .card {
+          height: auto;
+        }
+      }
     }
+  }
 }

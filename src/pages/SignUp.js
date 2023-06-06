@@ -35,7 +35,6 @@ const SignUp = () => {
       email,
       birthdate,
       password,
-
     });
     if (res.success) {
       console.log({ res });
@@ -55,25 +54,14 @@ const SignUp = () => {
   // };
 
   return (
-    <div className="page">
+    <div className="sign-page">
       <Card>
-        <h1>
-          <Row>
-            <Col sm={1}>
-              <Nav.Link
-                as={Link}
-                to="/signin"
-                disabled={pathname === "/signin"}
-              >
-                <img src={back} />
-              </Nav.Link>
-            </Col>
-            <Col sm={11}>Присоединиться к FICTIONS</Col>
-          </Row>
-        </h1>
-        <Form>
-        {/* noValidate validated={validated} onSubmit={handleSubmits} */}
+        <h1>Присоединиться к FICTIONS</h1>
+
+        <Form className="form">
+          {/* noValidate validated={validated} onSubmit={handleSubmits} */}
           <Form.Control
+            className="input"
             required
             type="text"
             placeholder="Имя пользователя"
@@ -81,6 +69,7 @@ const SignUp = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
           <Form.Control
+            className="input"
             required
             type="email"
             placeholder="Электронная почта"
@@ -88,6 +77,7 @@ const SignUp = () => {
             onChange={(e) => seEmail(e.target.value)}
           />
           <Form.Control
+            className="input"
             required
             type="text"
             placeholder="Дата рождения"
@@ -95,6 +85,7 @@ const SignUp = () => {
             onChange={(e) => setBirthdate(e.target.value)}
           />
           <Form.Control
+            className="input"
             required
             type="text"
             placeholder="Пароль"
@@ -102,6 +93,7 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Form.Check
+            className="input-check"
             required
             type="checkbox"
             label="Согласие с Условиями пользования и Политикой конфиденциальности"
@@ -109,7 +101,7 @@ const SignUp = () => {
             feedbackType="invalid"
           />
 
-          <button className="sign-button" onClick={register}>
+          <button className="button" onClick={register}>
             Зарегистрироваться
           </button>
           {/* <Button className="sign-button-vk" onClick={register}>

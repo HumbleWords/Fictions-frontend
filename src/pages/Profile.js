@@ -20,7 +20,7 @@ const Profile = () => {
     getUser();
   }, []);
   return (
-    <div className="page">
+    <div className="profile-page">
       <a>Profile</a>
       <h1>{user.username}</h1>
       <Button

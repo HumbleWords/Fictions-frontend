@@ -3,20 +3,14 @@ $blue: #37598c;
 $greyblue: #d5e2ff;
 $white: white;
 
-.search-page {
+.admin-page {
+    overflow: hidden;
     padding-left: 60px;
     padding-top: 50px;
-    background-color: $greyblue;
-    height: 100vh;
-    // height: auto;
-
-    .form {
-        padding: 10px 5px 10px 5px;
-    }
 }
 
 @media screen and (max-width:800px) {
-    .search-page {
+    .admin-page {
         padding-left: 0;
     }
 }

@@ -3,14 +3,72 @@ $blue: #37598c;
 $greyblue: #d5e2ff;
 $white: white;
 
-.page {
+.sign-page {
+  overflow: auto;
+  padding-left: 60px;
+  padding-top: 50px;
+  background-color: $greyblue;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 60vw;
+    height: auto;
     overflow: hidden;
-    padding-left: 60px;
-    padding-top: 50px;
+    padding: 25px;
+
+    h1 {
+      color: $darkblue;
+      padding: 5px 0 10px 0;
+      text-align: center;
+    }
+
+    .form {
+      .input {
+        margin-bottom: 15px;
+        height: 5vh;
+        padding: 7px;
+        width: 50vw;
+      }
+
+      .input-check {
+        color: $darkblue;
+        margin-bottom: 10px;
+      }
+
+      .button {
+        background-color: $blue;
+        color: $white;
+        border: none;
+        border-radius: 20px;
+        text-align: center;
+        width: auto;
+        padding: 10px 20px 10px 20px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .signup {
+    color: $blue;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
-@media screen and (max-width:800px) {
-    .page {
-        padding-left: 0;
-    }
+@media screen and (max-width: 800px) {
+  .sign-page {
+    padding-left: 0;
+  }
 }

@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Menu from "./components/Menu";
 import Footer from "./components/Footer";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const App = () => {
   const [menuActive, setMenuActive] = useState(false);

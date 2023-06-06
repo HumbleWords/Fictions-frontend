@@ -3,7 +3,7 @@ $blue: #37598c;
 $greyblue: #d5e2ff;
 $white: white;
 
-.search-page {
+.info-page {
     padding-left: 60px;
     padding-top: 50px;
     background-color: $greyblue;
@@ -16,7 +16,7 @@ $white: white;
 }
 
 @media screen and (max-width:800px) {
-    .search-page {
+    .info-page {
         padding-left: 0;
     }
 }

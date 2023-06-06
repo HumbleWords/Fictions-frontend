@@ -22,9 +22,16 @@ $white: white;
   .text {
     color: $greyblue;
     text-align: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 5px;
+    display: block;
+    // padding-top: 30px;
+    // padding-bottom: 30px;
+  }
 
+  ul {
+    display: block;
+    align-items: center;
+    justify-items: center;
   }
 }
 

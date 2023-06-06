@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App";
 import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 import Search from "./pages/Search";
 import Works from "./pages/Works";
 import MyWorks from "./pages/MyWorks";
@@ -13,7 +14,7 @@ import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Authors from "./pages/Authors";
-// import CreateWork from "./pages/CreateWork";
+import Info from "./pages/Info";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,8 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/info" element={<Info />} />
           <Route path="/search" element={<Search />} />
           <Route path="/works" element={<Works />} />
           <Route path="/works/:id" element={<Work />} />
@@ -29,8 +32,6 @@ ReactDOM.render(
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/profile" element={<Profile />} /> */}
-          {/* <Route path="/creatework" element={<CreateWork />} /> */}
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>

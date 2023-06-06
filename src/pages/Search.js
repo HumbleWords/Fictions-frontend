@@ -5,11 +5,19 @@ import "../style/search.scss";
 
 const Search = () => {
   return (
-    <div className="page">
+    <div className="search-page">
       <Form>
         <div className="info">
           <Card>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="input" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+            </Form.Group>
+            <Form.Group className="input" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+            </Form.Group>
+            <Form.Group className="input" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
             </Form.Group>
@@ -17,7 +25,7 @@ const Search = () => {
         </div>
         <div className="tegs">
           <Card>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="input" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
             </Form.Group>
@@ -25,7 +33,7 @@ const Search = () => {
         </div>
         <div className="sort">
           <Card>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="input" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
             </Form.Group>

@@ -1,4 +1,5 @@
 $blue: #4C62AD;
+// $blue: #334170;
 $black: black;
 $white: white;
 
@@ -8,10 +9,20 @@ $white: white;
     height: 50px;
     width: 100%;
     background-color: $blue;
+    border: $blue;
     position: fixed;
     z-index: 50;
     display: flex;
     align-items: center;
+
+    .logo {
+        position: absolute;
+        left: 60px;
+
+        img {
+            width: 40px;
+        }
+    }
 
     .profile {
         position: absolute;
@@ -208,6 +219,7 @@ $white: white;
     left: 0;
     z-index: 50;
     background-color: $blue;
+    border: $blue;
     transform: translateX(-100%);
     transition: all 0.5s;
 
@@ -216,9 +228,9 @@ $white: white;
     }
 
     .content {
-        margin-left: -13.5vh;
+        margin-left: -87px;
         //  margin-top: 10px;
-        margin-top: 4px;
+        margin-top: 9px;
         width: 38vh;
         height: 100vh;
         display: flex;
@@ -253,6 +265,10 @@ $white: white;
         .login {
             position: absolute;
             bottom: 50px;
+
+            ol:hover {
+                color: $white;
+            }
         }
     }
 
@@ -282,13 +298,11 @@ $white: white;
 
     ul ol {
         display: flex;
-        // align-items: center;
         margin: 15px;
     }
 
     ul {
         margin-left: 15px;
-        // margin-left: 50px;
         text-align:left;
         display: flex;
         flex-direction: column;
@@ -310,10 +324,8 @@ $white: white;
     }
 
     a {
-        // margin-left: 15px;
         display: flex;
         align-items: center;
-        
     }
 
     .icons {

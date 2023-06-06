@@ -48,18 +48,18 @@ const SignIn = () => {
   };
 
   return (
-    <div className="page">
-      <Card className="sign-card">
-        <h1 className="sign-text">Войти в FICTIONS</h1>
+    <div className="sign-page">
+      <Card className="card">
+        <h1 className="titlet">Войти в FICTIONS</h1>
         <Form
-          className="sign-form"
+          className="form"
           noValidate
           validated={validated}
           onSubmit={handleSubmits}
         >
           <Form.Control
             required
-            className="sign-input"
+            className="input"
             type="text"
             placeholder="Логин"
             value={username}
@@ -68,23 +68,25 @@ const SignIn = () => {
           />
           <Form.Control
             required
-            className="sign-input"
+            className="input"
             type="password"
             placeholder="Пароль"
             value={password}
             onInput={handleSubmits}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="sign-button" onClick={login}>
+
+          <button className="button" onClick={login}>
             Войти
           </button>
+
           {/* <Button className="sign-button-vk" onClick={login}>
             <img className="sign-vk" src={vk} /> Войти через ВК
           </Button> */}
         </Form>
 
         <Nav.Link
-          className="signup-t"
+          className="signup"
           as={Link}
           to="/signup"
           disabled={pathname === "/signup"}
