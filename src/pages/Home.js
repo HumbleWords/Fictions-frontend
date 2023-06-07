@@ -21,16 +21,16 @@ const Works = ({ work }) => {
 
   return (
     <Card className="card">
-      <Card.Body>
+      <Card.Body className="container">
         <Row>
           <Col
             // xxs={6}
             xs={12}
-            sm={4}
-            md={3}
+            sm={12}
+            md={12}
             lg={3}
             xl={3}
-            xxl={4}
+            xxl={3}
             onClick={() => {
               navigate("/works/" + work.id);
             }}
@@ -38,20 +38,20 @@ const Works = ({ work }) => {
             <img className="image" src={cover} />
           </Col>
           <Col
-            className="container"
             // xxs={6}
             xs={12}
-            sm={7}
-            md={7}
+            sm={12}
+            md={12}
             lg={8}
-            xl={9}
+            xl={8}
             xxl={8}
           >
             <Nav.Link as={Link} to={"/works/" + work.id}>
               <h5 className="title">{work.title}</h5>
             </Nav.Link>
+            <span className="divider" />
 
-            <ul className="desc">
+            <ul className="description">
               <Nav.Link
                 className="text"
                 as={Link}
@@ -64,7 +64,7 @@ const Works = ({ work }) => {
                 <br />
                 Рейтинг: {work.rating ?? "Не указано"} <br />
                 Фандомы:{" "}
-                <ul>
+                <ul className="list">
                   {work.fandoms
                     ? work.fandoms.map((fandom) => (
                         <Nav.Link
@@ -72,13 +72,13 @@ const Works = ({ work }) => {
                           className="text"
                           to={"/fandoms/" + fandom.id}
                         >
-                          <span key={fandom.id}>{fandom.name}, </span>
+                          <span key={fandom.id}>{fandom.name}</span>
                         </Nav.Link>
                       ))
                     : null}
                 </ul>
                 Теги:{" "}
-                <ul>
+                <ul className="list">
                   {work.tags
                     ? work.tags.map((tag) => (
                         <Nav.Link
@@ -86,12 +86,13 @@ const Works = ({ work }) => {
                           className="text"
                           to={"/tags/" + tag.id}
                         >
-                          <span key={tag.id}>{tag.name}, </span>
+                          <span key={tag.id}>{tag.name}</span>
                         </Nav.Link>
                       ))
                     : null}
                 </ul>
               </p>
+              <span className="divider" />
               <p
                 className="text"
                 dangerouslySetInnerHTML={{
@@ -115,9 +116,7 @@ const Popular = ({ fandom }) => {
 };
 
 const Home = () => {
-  const [WorksList1, setWorksList1] = useState([]);
-  const [WorksList2, setWorksList2] = useState([]);
-  const [WorksList3, setWorksList3] = useState([]);
+  const [workList, setWorkList] = useState([]);
   const [FandomsList, setFandomsList] = useState([]);
   const [user, setUser] = useState({});
   const { loggedIn } = useToken();
@@ -129,25 +128,11 @@ const Home = () => {
     console.log({ res });
   };
 
-  async function getWorksList1() {
-    const res = await getData("works?skip=0&take=1&orderBy=desc");
+  async function getWorkList() {
+    const res = await getData("works?skip=0&take=3&orderBy=desc");
     if (!res.success) return alert(res.message);
     console.log({ res });
-    return setWorksList1(res.data);
-  }
-
-  async function getWorksList2() {
-    const res = await getData("works?skip=1&take=1&orderBy=desc");
-    if (!res.success) return alert(res.message);
-    console.log({ res });
-    return setWorksList2(res.data);
-  }
-
-  async function getWorksList3() {
-    const res = await getData("works?skip=2&take=1&orderBy=desc");
-    if (!res.success) return alert(res.message);
-    console.log({ res });
-    return setWorksList3(res.data);
+    return setWorkList(res.data);
   }
 
   async function getFandomsList() {
@@ -158,9 +143,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getWorksList1();
-    getWorksList2();
-    getWorksList3();
+    getWorkList();
     getFandomsList();
     if (loggedIn) getUser();
   }, []);
@@ -172,27 +155,15 @@ const Home = () => {
           <h1 className="header"> Новинки на Fictions</h1>
 
           <Carousel className="carousel">
-            <Carousel.Item>
-              {WorksList1 ? (
-                WorksList1.map((work) => <Works key={work.id} work={work} />)
-              ) : (
-                <p>Работ нет</p>
-              )}
-            </Carousel.Item>
-            <Carousel.Item>
-              {WorksList2 ? (
-                WorksList2.map((work) => <Works key={work.id} work={work} />)
-              ) : (
-                <p>Работ нет</p>
-              )}
-            </Carousel.Item>
-            <Carousel.Item>
-              {WorksList3 ? (
-                WorksList3.map((work) => <Works key={work.id} work={work} />)
-              ) : (
-                <p>Работ нет</p>
-              )}
-            </Carousel.Item>
+            {workList.length > 0 ? (
+              workList.map((work) => (
+                <Carousel.Item>
+                  <Works key={work.id} work={work} />
+                </Carousel.Item>
+              ))
+            ) : (
+              <p>Работ нет</p>
+            )}
           </Carousel>
         </div>
 
@@ -211,7 +182,10 @@ const Home = () => {
                 <Card.Title className="title">Приглашение</Card.Title>
                 <span />
                 <Card.Text className="text">
-                  <a>Добро пожаловать</a>
+                  <p className="mt-3">Зарегистрировавшишь, вы сможете:</p>
+                  <p>— оставлять комментарии к работам;</p>
+                  <p>— сохранять работы, которые вам понравились;</p>
+                  <p>— публиковать свои собственные творения!</p>
                 </Card.Text>
               </Card.Body>
               <Button href="/signin" className="button">

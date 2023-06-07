@@ -19,9 +19,9 @@ const Work = ({ work }) => {
 
   return (
     <Card className="card">
-      <Card.Body>
+      <Card.Body className="container">
         <Row>
-          <Col xs={12} sm={4} md={3} lg={3} xl={3}>
+          <Col xs={12} sm={12} md={12} lg={3} xl={3}>
             <img
               src={cover}
               onClick={() => {
@@ -30,18 +30,18 @@ const Work = ({ work }) => {
             />
           </Col>
           <Col
-            className="container"
             // xxs={6}
             xs={12}
-            sm={6}
-            md={7}
+            sm={12}
+            md={12}
             lg={8}
             xl={8}
           >
             <Nav.Link as={Link} className="title" to={"/works/" + work.id}>
               <h5>{work.title}</h5>
             </Nav.Link>
-            <ul className="desc">
+            <span className="divider" />
+            <ul className="description">
               <Nav.Link
                 className="text"
                 as={Link}
@@ -54,7 +54,7 @@ const Work = ({ work }) => {
                 <br />
                 Рейтинг: {work.rating ?? "Не указано"} <br />
                 Фандомы:{" "}
-                <ul>
+                <ul className="list">
                   {work.fandoms
                     ? work.fandoms.map((fandom) => (
                         <Nav.Link
@@ -62,13 +62,13 @@ const Work = ({ work }) => {
                           className="text"
                           to={"/fandoms/" + fandom.id}
                         >
-                          <span key={fandom.id}>{fandom.name}, </span>
+                          <span key={fandom.id}>{fandom.name}</span>
                         </Nav.Link>
                       ))
                     : null}
                 </ul>
                 Теги:{" "}
-                <ul>
+                <ul className="list">
                   {work.tags
                     ? work.tags.map((tag) => (
                         <Nav.Link
@@ -76,12 +76,13 @@ const Work = ({ work }) => {
                           className="text"
                           to={"/tags/" + tag.id}
                         >
-                          <span key={tag.id}>{tag.name}, </span>
+                          <span key={tag.id}>{tag.name}</span>
                         </Nav.Link>
                       ))
                     : null}
                 </ul>
               </p>
+              <span className="divider" />
               <p
                 className="text"
                 dangerouslySetInnerHTML={{
@@ -98,11 +99,13 @@ const Work = ({ work }) => {
 
 const Works = ({}) => {
   const [WorksList, setWorksList] = useState([]);
-  const [orderParam, setOrderParam] = useState('updatedAt');
-  const [orderBy, setOrderBy] = useState('asc');
+  const [orderParam, setOrderParam] = useState("updatedAt");
+  const [orderBy, setOrderBy] = useState("desc");
 
   async function getWorksList() {
-    const res = await getData(`works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}`);
+    const res = await getData(
+      `works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}`
+    );
     if (!res.success) return alert(res.message);
     console.log({ res });
     return setWorksList(res.data);
@@ -134,28 +137,49 @@ const Works = ({}) => {
                 <Card.Title className="title">Фильтрация</Card.Title>
                 <Form className="form">
                   <Form.Group className="line">
-                    <Form.Label>Фильтровать по</Form.Label>
-                    <Form.Select defaultValue={orderParam} onChange={(event) => setOrderParam(event.target.value)}>
-                      <option value={'createdAt'}>Дата создания</option>
-                      <option value={'updatedAt'}>Дата обновления</option>
-                      <option value={'title'}>Название</option>
+                    <Form.Label>Сортировать по</Form.Label>
+                    <Form.Select
+                      defaultValue={orderParam}
+                      onChange={(event) => setOrderParam(event.target.value)}
+                    >
+                      <option value={"createdAt"}>Дата создания</option>
+                      <option value={"updatedAt"}>Дата обновления</option>
+                      <option value={"title"}>Название</option>
                     </Form.Select>
                   </Form.Group>
                   <Form.Group className="line">
-                    <Form.Label>Сортировать по</Form.Label>
-                    <Form.Select defaultValue={orderBy} onChange={(event) => setOrderBy(event.target.value)}>
-                      <option value={'asc'}>По возрастанию</option>
-                      <option value={'desc'}>По убыванию</option>
+                    <Form.Select
+                      defaultValue={orderBy}
+                      onChange={(event) => setOrderBy(event.target.value)}
+                    >
+                      <option value={"desc"}>По убыванию</option>
+                      <option value={"asc"}>По возрастанию</option>
                     </Form.Select>
                   </Form.Group>
                   <Row>
                     <Col>
-                      <Button className="button" type="search">
-                        Фильтровать
+                      <Button
+                        className="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          getWorksList();
+                        }}
+                      >
+                        Сортировать
                       </Button>
                     </Col>
                     <Col>
-                      <Button className="buttontwo">Сброс</Button>
+                      <Button
+                        className="buttontwo"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setOrderBy("desc");
+                          setOrderParam("updatedAt");
+                          getWorksList();
+                        }}
+                      >
+                        Сброс
+                      </Button>
                     </Col>
                   </Row>
                 </Form>

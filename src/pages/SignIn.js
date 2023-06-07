@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -11,14 +11,17 @@ import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
-import { postData } from "../utils/network";
+import { postData, getData } from "../utils/network";
 
 import useLoginGuard from "../hooks/useLoginGuard";
 import "../style/sign.scss";
+import { UserContext } from "../App";
 
 const SignIn = () => {
   const { pathname } = useLocation();
   const [validated, setValidated] = useState(false);
+
+  const { user, setUser } = useContext(UserContext);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +36,12 @@ const SignIn = () => {
     if (res.success) {
       console.log({ res });
       localStorage.setItem("access_token", res.data.access_token);
+      getData("users/me").then((response) => {
+        if (response.success) {
+          setUser(response.data);
+          return;
+        }
+      });
       navigate("/");
     } else alert(`Error: ${res.message}`);
   };

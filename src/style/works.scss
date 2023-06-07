@@ -13,23 +13,44 @@ $white: white;
   padding-bottom: 20px;
   overflow: hidden;
 
+  span.divider {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: $blue;
+    width: 100%;
+    height: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   .list {
     margin-top: 20px;
+    .noworks {
+      color: $darkblue;
+      font-weight: 500;
+      width: 60%;
+      font-size: 16px;
+    }
+    .button {
+      width: auto;
+      color: $white;
+      border: none;
+      border-radius: 15px;
+      background-color: $darkblue;
+      display: block;
+      margin-top: 5px;
+    }
     ul {
       .card {
         width: 50vw;
         height: auto;
-        // height: 35.5vh;
         margin-top: 20px;
         border-radius: 5px;
 
         display: flex;
         justify-content: center;
         align-items: flex-start;
-
-        &:hover {
-          height: auto;
-        }
 
         img {
           width: 150px;
@@ -44,15 +65,9 @@ $white: white;
 
         .container {
           height: auto;
-          // height: 29vh;
-          display: -webkit-box;
-          -webkit-line-clamp: 9;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
 
-          &:hover {
-            height: auto;
-            display: block;
+          .row {
+            justify-content: space-between;
           }
 
           .title {
@@ -62,8 +77,22 @@ $white: white;
             cursor: pointer;
           }
 
-          .desc {
+          ul.description {
             color: $blue;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+            ul.list {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 5px;
+              margin: 0;
+              a:not(:last-child)::after {
+                content: ",";
+              }
+            }
           }
         }
       }
@@ -96,10 +125,7 @@ $white: white;
           border: none;
           border-radius: 15px;
           background-color: $darkblue;
-          // background-color: #f76c6c;
           display: block;
-          // margin-left: auto;
-          // margin-right: auto;
           margin-top: 5px;
         }
 
@@ -109,7 +135,7 @@ $white: white;
           border: none;
           border-radius: 15px;
           background-color: #f76c6c;
-          display: block; 
+          display: block;
           margin-top: 5px;
         }
       }
@@ -127,14 +153,12 @@ $white: white;
       border-radius: 5px;
 
       img {
-        width: 250px;
+        width: 100px;
         height: auto;
         border-radius: 10px;
       }
 
       .container {
-        margin-top: -6px;
-        // display: block;
         align-items: flex-start;
 
         .title {
@@ -143,17 +167,56 @@ $white: white;
           margin-left: 30px;
         }
 
-        ul {
+        ul.description {
           color: $blue;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          margin: 0;
+          padding: 0;
+          ul.list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 0;
+            a:not(:last-child)::after {
+              content: ",";
+            }
+          }
         }
       }
     }
 
     .part {
-      padding-left: 60px;
-      // overflow: hidden;
       ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: 20px;
+        padding: 0;
+
+        .heading {
+          background-color: $white;
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+
+          h3 {
+            font-size: 24px;
+          }
+
+          h4 {
+            width: 60%;
+            font-size: 18px;
+          }
+
+          .text {
+            width: 60%;
+          }
+        }
         .card {
           background-color: $white;
           border: none;
@@ -165,13 +228,31 @@ $white: white;
             display: block;
             align-items: flex-start;
             ul {
-              .title{
-
+              .title {
               }
             }
           }
         }
       }
+    }
+  }
+  .comment-section {
+    .card {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 90vw;
+      height: auto;
+      border-radius: 5px;
+
+      ul {
+        padding: 0;
+      }
+    }
+
+    .ql-editor {
+      min-height: 25vh;
     }
   }
 }

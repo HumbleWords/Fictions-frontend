@@ -1,0 +1,55 @@
+$darkblue: #334170;
+$blue: #37598c;
+$greyblue: #d5e2ff;
+$white: white;
+
+#PostWork {
+  padding-top: 75px;
+  padding-bottom: 75px;
+  background-color: $greyblue;
+
+  h2 {
+    color: $darkblue;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
+  span.divider {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: $blue;
+    width: 70vw;
+    height: 1px;
+  }
+  .data {
+    width: 70vw;
+    color: $darkblue;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    height: auto;
+    padding: 15px;
+    border: none;
+  }
+
+  .ql-editor {
+    min-height: 25vh;
+  }
+
+  .secondary-button {
+    background-color: $blue;
+    color: $white;
+    border: none;
+    border-radius: 5px;
+    display: block;
+  }
+
+  .submit-button {
+    background-color: $blue;
+    color: $white;
+    border: none;
+    border-radius: 5px;
+    display: block;
+  }
+}

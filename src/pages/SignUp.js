@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -14,12 +14,15 @@ import back from "../assets/images/back.png";
 
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
-import { postData } from "../utils/network";
+import { postData, getData } from "../utils/network";
 
 import "../style/sign.scss";
+import { UserContext } from "../App";
 
 const SignUp = () => {
   const { pathname } = useLocation();
+
+  const { user, setUser } = useContext(UserContext);
 
   const [email, seEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -39,6 +42,12 @@ const SignUp = () => {
     if (res.success) {
       console.log({ res });
       localStorage.setItem("access_token", res.data.access_token);
+      getData("users/me").then((response) => {
+        if (response.success) {
+          setUser(response.data);
+          return;
+        }
+      });
       navigate("/");
     } else alert(`Error: ${res.message}`);
   };
@@ -87,7 +96,7 @@ const SignUp = () => {
           <Form.Control
             className="input"
             required
-            type="text"
+            type="password"
             placeholder="Пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

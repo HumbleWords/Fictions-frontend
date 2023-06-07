@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 
 import "../style/works.scss";
 import cover from "../assets/images/cover1.png";
+import useToken from "../hooks/useToken";
+import CommentForm from "../components/CommentForm";
 
 const WorkParts = ({ workPart }) => {
   const decodeHtml = (html) => {
@@ -46,29 +48,19 @@ const WorkParts = ({ workPart }) => {
 
 const Work = () => {
   const [work, setWork] = useState({});
-  const [WorkPartList, setWorkPartList] = useState({});
+
+  const { loggedIn } = useToken();
 
   const { id } = useParams();
   console.log(id);
 
   const getWork = async () => {
-    // if (mywork) {
-    //   const res = await getData(`myworks/${id}`);
-    //   if (res.success) setWork(res.data);
-    //   return
-    // }
     const res = await getData(`works/${id}`);
     if (res.success) setWork(res.data);
   };
 
-  const getWorkPart = async () => {
-    const res = await getData(`workparts/${id}`);
-    if (res.success) setWorkPartList(res.data);
-  };
-
   useEffect(() => {
     getWork();
-    getWorkPart();
   }, []);
 
   const decodeHtml = (html) => {
@@ -96,22 +88,12 @@ const Work = () => {
                 xl={8}
                 xxl={9}
               >
-                <h3 className="title">
-                  {work?.title} {work?.id}
-                </h3>
-                <ul>
-                  <Nav.Link
-                    as={Link}
-                    className="text"
-                    to={"/users/" + work?.authorId}
-                  >
-                    Автор: {work?.author?.username}
-                  </Nav.Link>
+                <ul className="description">
                   Категория: {work?.category ?? "Не указано"}
                   <br />
                   Рейтинг: {work?.rating ?? "Не указано"} <br />
                   Фандомы:{" "}
-                  <ul>
+                  <ul className="list">
                     {work?.fandoms
                       ? work?.fandoms.map((fandom) => (
                           <Nav.Link
@@ -119,13 +101,13 @@ const Work = () => {
                             className="text"
                             to={"/fandoms/" + fandom.id}
                           >
-                            <span key={fandom.id}>{fandom.name}, </span>
+                            <span key={fandom.id}>{fandom.name}</span>
                           </Nav.Link>
                         ))
                       : null}
                   </ul>
                   Теги:{" "}
-                  <ul>
+                  <ul className="list">
                     {work?.tags
                       ? work?.tags.map((tag) => (
                           <Nav.Link
@@ -133,17 +115,11 @@ const Work = () => {
                             className="text"
                             to={"/tags/" + tag.id}
                           >
-                            <span key={tag.id}>{tag.name}, </span>
+                            <span key={tag.id}>{tag.name}</span>
                           </Nav.Link>
                         ))
                       : null}
                   </ul>
-                  <p
-                    className="text"
-                    dangerouslySetInnerHTML={{
-                      __html: decodeHtml(work?.description),
-                    }}
-                  ></p>
                 </ul>
               </Col>
             </Row>
@@ -152,14 +128,90 @@ const Work = () => {
 
         <div className="part">
           <ul>
-            {work?.parts && work.parts.length > 0 ? (
-              work.parts?.map((workPart) => (
-                <WorkParts key={workPart.id} workPart={workPart} />
-              ))
+            {work?.parts && work.parts.length == 1 ? (
+              <Card className="card">
+                <Card.Body>
+                  <div className="heading">
+                    <h2>{work.title}</h2>
+                    <h3>
+                      <Nav.Link as={Link} to={"/users/" + work?.authorId}>
+                        Автор: {work?.author?.username}
+                      </Nav.Link>
+                    </h3>
+                    <span className="divider" />
+                    <h4>Описание работы</h4>
+                    <p
+                      className="text"
+                      dangerouslySetInnerHTML={{
+                        __html: decodeHtml(work.description),
+                      }}
+                    ></p>
+                    {work.note ? (
+                      <>
+                        <h4>Примечания автора</h4>
+                        <p
+                          className="text"
+                          dangerouslySetInnerHTML={{
+                            __html: decodeHtml(work.note),
+                          }}
+                        ></p>
+                      </>
+                    ) : null}
+                    <span className="divider" />
+                  </div>
+                  <div
+                    xs={8}
+                    className="container"
+                    dangerouslySetInnerHTML={{
+                      __html: decodeHtml(work.parts[0].text),
+                    }}
+                  ></div>
+                </Card.Body>
+              </Card>
+            ) : work?.parts && work.parts.length > 0 ? (
+              <>
+                <div className="heading">
+                  <h2>{work.title}</h2>
+                  <h3>
+                    <Nav.Link as={Link} to={"/users/" + work?.authorId}>
+                      Автор: {work?.author?.username}
+                    </Nav.Link>
+                  </h3>
+                  <p
+                    className="text"
+                    dangerouslySetInnerHTML={{
+                      __html: decodeHtml(work.description),
+                    }}
+                  ></p>
+                  {work.note ? (
+                    <p
+                      className="text"
+                      dangerouslySetInnerHTML={{
+                        __html: decodeHtml(work.note),
+                      }}
+                    ></p>
+                  ) : null}
+                  <span className="divider" />
+                </div>
+                {work.parts?.map((workPart) => (
+                  <WorkParts key={workPart.id} workPart={workPart} />
+                ))}
+              </>
             ) : (
               <p>На данный момент здесь пусто</p>
             )}
           </ul>
+        </div>
+        <div className="comment-section">
+          <Card className="card">
+            <Card.Body>
+              <h2>Комментарии</h2>
+              <div xs={8} className="container">
+                {loggedIn ? <CommentForm /> : null}
+                {work?.comments ? <ul> </ul> : <p>Комментариев нет</p>}
+              </div>
+            </Card.Body>
+          </Card>
         </div>
       </div>
     </div>
