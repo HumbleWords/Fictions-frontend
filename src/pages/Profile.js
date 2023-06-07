@@ -14,6 +14,7 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <h2>Профиль</h2>
+      <span />
       <Card className="data">
         <a>{user?.username}</a>
         <a>{user?.email}</a>

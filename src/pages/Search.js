@@ -7,10 +7,12 @@ const Search = () => {
   return (
     <div className="search-page">
       <h1>Поиск</h1>
+      <span />
       <Form className="form">
         <div className="info">
           <Card className="card">
             <Card.Title className="title">Информация о работе</Card.Title>
+            <span />
             <Form.Group className="input" controlId="formBasicEmail">
               <Form.Label>Название</Form.Label>
               <Form.Control type="text" />
@@ -26,8 +28,9 @@ const Search = () => {
           </Card>
         </div>
         <div className="tegs">
-          <Card>
+          <Card className="card">
             <Card.Title className="title">Теги</Card.Title>
+            <span />
             <Form.Group className="input" controlId="formBasicEmail">
               <Form.Label>Фандомы</Form.Label>
               <Form.Control type="text" />
@@ -43,8 +46,9 @@ const Search = () => {
           </Card>
         </div>
         <div className="sort">
-          <Card>
+          <Card className="card">
             <Card.Title className="title">Сортировка</Card.Title>
+            <span />
             <Form.Group className="input" controlId="formBasicEmail">
               <Form.Label>Сортировать по</Form.Label>
               <Form.Control type="text" />

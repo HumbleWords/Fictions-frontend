@@ -19,9 +19,9 @@ const Admin = () => {
   const [WorksList, setWorksList] = useState();
   const [FandomsList, setFandomsList] = useState();
   const [TagsList, setTagsList] = useState();
-  const [addModalShow, setAddModalShow] = useState(false);
+  // const [addModalShow, setAddModalShow] = useState(false);
 
-  const usersListTable = ["#", "Имя", "email", "Дата рождения", " ", " "];
+  const usersListTable = ["#", "Имя", " ", " "];
   const worksListTable = [
     "#",
     "Название",

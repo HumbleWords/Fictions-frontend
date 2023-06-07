@@ -16,6 +16,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Authors from "./pages/Authors";
 import Info from "./pages/Info";
+import PostWork from './pages/PostWork';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -31,6 +32,7 @@ ReactDOM.render(
           <Route path="/myworks/:id" element={<MyWork />} />
           <Route path="/users/:id" element={<Authors />} />
           <Route path="/myworks" element={<MyWorks />} />
+          <Route path='/postwork' element={<PostWork />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />

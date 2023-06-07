@@ -133,7 +133,7 @@ const Menu = ({ active, setActive }) => {
                     Выйти
                   </a>
                 ) : (
-                  <Nav.Link href="/signin">
+                  <Nav.Link href="/signin" className="in">
                     <img className="icons" src={login} />
                     Войти
                   </Nav.Link>

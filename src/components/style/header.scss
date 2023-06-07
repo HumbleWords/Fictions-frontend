@@ -241,6 +241,10 @@ $white: white;
         .login {
             position: absolute;
             bottom: 60px;
+
+            ol:hover {
+                color: $white;
+            }
         }
     }
 

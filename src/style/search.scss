@@ -17,6 +17,14 @@ $white: white;
         text-align: left;
     }
 
+    span {
+        margin-left: 30px;
+        display: block;
+        background-color: $blue;
+        width: 90vw;
+        height: 1px;
+    }
+
     .form {
         // padding: 10px 5px 10px 5px;
         margin-top: 30px;
@@ -28,6 +36,13 @@ $white: white;
         
         .card {
             margin-bottom: 20px;
+            border: none;
+            padding: 20px;
+
+            span {
+                margin-left: 20px;
+                width: 78vw;
+            }
 
             .title {
                 margin-left: 20px;
