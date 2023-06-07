@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 
 import "../style/admin.scss";
 import AddWorks from "../components/AddWorks";
+// import PostTag from "../components/req/PostTeg";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getData, deleteData } from "../utils/network";
 import { Table } from "react-bootstrap";
 
+import { UserContext } from "../App";
+
 const Admin = () => {
   const [user, setUser] = useState();
+  // const {user, setUser} = useContext(UserContext);
   const [WorksList, setWorksList] = useState();
   const [FandomsList, setFandomsList] = useState();
   const [TagsList, setTagsList] = useState();
@@ -30,7 +34,6 @@ const Admin = () => {
     "Теги",
     " ",
     " ",
-    // "Частей"
   ];
   const fandomsListTable = ["#", "Название", " ", " "];
   const tagsListTable = ["#", "Название", " ", " "];
@@ -62,11 +65,11 @@ const Admin = () => {
     return setUser(res.data);
   };
 
-  async function handleDelete(userId) {
-    const { success, message } = await deleteData(`users/${userId}`);
-    if (!success) return alert(message);
-    await getUsers();
-  }
+  // async function handleDelete(userId) {
+  //   const { success, message } = await deleteData(`users/${userId}`);
+  //   if (!success) return alert(message);
+  //   await getUsers();
+  // }
 
   useEffect(() => {
     getWorksList();
@@ -77,7 +80,8 @@ const Admin = () => {
 
   return (
     <div className="admin-page">
-      <div className="create">
+
+      {/* <div className="create">
         <AddWorks
           show={addModalShow}
           getWorksList={getWorksList}
@@ -85,7 +89,7 @@ const Admin = () => {
         />
 
         <Button onClick={() => setAddModalShow(true)}>Создать работу</Button>
-      </div>
+      </div> */}
 
       <div className="user">
         <Table className="table">
@@ -113,12 +117,9 @@ const Admin = () => {
                     </td>
                     <td>{user.birthday}</td>
                     <td>
-                      <Button
-                        size="sm"
-                        onClick={() => handleDelete(user.id)}
-                      >
+                      {/* <Button size="sm" onClick={() => handleDelete(user.id)}>
                         Удалить
-                      </Button>
+                      </Button> */}
                     </td>
                   </tr>
                 ))}
@@ -154,7 +155,7 @@ const Admin = () => {
                       <p>{WorksList.title}</p>
                     </td>
                     <td>
-                      <p>{WorksList.authorId}</p>
+                      <p>{WorksList.author.username}</p>
                     </td>
                     <td>{WorksList.description}</td>
                     <td>{WorksList.lang}</td>
@@ -186,19 +187,6 @@ const Admin = () => {
                           ))
                         : null}
                     </td>
-                    {/* <td>
-                      {WorksList.workparts
-                        ? WorksList.workparts.map((workpart) => (
-                            <Nav.Link
-                              as={Link}
-                              className="text"
-                              to={"/workpart/" + workpart.id}
-                            >
-                              <span key={workpart.id}>{workpart.title}, </span>
-                            </Nav.Link>
-                          ))
-                        : null}
-                    </td> */}
                   </tr>
                 ))}
               </tbody>

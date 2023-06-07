@@ -47,9 +47,9 @@ const Work = ({ work }) => {
                 as={Link}
                 to={"/users/" + work.authorId}
               >
-                Автор: {work.authorId}
+                Автор: {work.author.username}
               </Nav.Link>
-              <Nav.Link className="text">
+              <p className="text">
                 Категория: {work.category ?? "Не указано"}
                 <br />
                 Рейтинг: {work.rating ?? "Не указано"} <br />
@@ -81,13 +81,13 @@ const Work = ({ work }) => {
                       ))
                     : null}
                 </ul>
-              </Nav.Link>
-              <Nav.Link
+              </p>
+              <p
                 className="text"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtml(work.description),
                 }}
-              ></Nav.Link>
+              ></p>
             </ul>
           </Col>
         </Row>
@@ -98,9 +98,11 @@ const Work = ({ work }) => {
 
 const Works = ({}) => {
   const [WorksList, setWorksList] = useState([]);
+  const [orderParam, setOrderParam] = useState('updatedAt');
+  const [orderBy, setOrderBy] = useState('asc');
 
   async function getWorksList() {
-    const res = await getData("works?skip=0&take=20&orderBy=asc");
+    const res = await getData(`works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}`);
     if (!res.success) return alert(res.message);
     console.log({ res });
     return setWorksList(res.data);
@@ -132,17 +134,18 @@ const Works = ({}) => {
                 <Card.Title className="title">Фильтрация</Card.Title>
                 <Form className="form">
                   <Form.Group className="line">
-                    <Form.Label>label</Form.Label>
-                    <Form.Select>
-                      <option>1</option>
-                      <option>2</option>
+                    <Form.Label>Фильтровать по</Form.Label>
+                    <Form.Select defaultValue={orderParam} onChange={(event) => setOrderParam(event.target.value)}>
+                      <option value={'createdAt'}>Дата создания</option>
+                      <option value={'updatedAt'}>Дата обновления</option>
+                      <option value={'title'}>Название</option>
                     </Form.Select>
                   </Form.Group>
                   <Form.Group className="line">
-                    <Form.Label>label</Form.Label>
-                    <Form.Select>
-                      <option>1</option>
-                      <option>2</option>
+                    <Form.Label>Сортировать по</Form.Label>
+                    <Form.Select defaultValue={orderBy} onChange={(event) => setOrderBy(event.target.value)}>
+                      <option value={'asc'}>По возрастанию</option>
+                      <option value={'desc'}>По убыванию</option>
                     </Form.Select>
                   </Form.Group>
                   <Row>
@@ -152,7 +155,7 @@ const Works = ({}) => {
                       </Button>
                     </Col>
                     <Col>
-                      <Button className="button">Сброс</Button>
+                      <Button className="buttontwo">Сброс</Button>
                     </Col>
                   </Row>
                 </Form>

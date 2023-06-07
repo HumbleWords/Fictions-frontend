@@ -1,6 +1,6 @@
 import { Card, Col, Form, Row, Button, Nav } from "react-bootstrap";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { getData } from "../utils/network";
@@ -8,7 +8,10 @@ import { getData } from "../utils/network";
 import "../style/works.scss";
 import cover from "../assets/images/cover1.png";
 
-const Work = ({ work }) => {
+import { UserContext } from "../App";
+import useToken from "../hooks/useToken";
+
+const Work = ({ work, mywork }) => {
   const navigate = useNavigate();
 
   const decodeHtml = (html) => {
@@ -25,16 +28,23 @@ const Work = ({ work }) => {
             <img
               src={cover}
               onClick={() => {
-                navigate("/works/" + work.id);
+                navigate("/myworks/" + work.id);
               }}
             />
           </Col>
           <Col className="container" xs={12} sm={6} md={7} lg={8} xl={8}>
-            <Nav.Link as={Link} className="title" to={"/works/" + work.id}>
+            <Nav.Link as={Link} className="title" to={"/myworks/" + work.id}>
               <h5>{work.title}</h5>
             </Nav.Link>
             <ul className="desc">
-              <Nav.Link className="text">
+              <Nav.Link
+                className="text"
+                as={Link}
+                to={"/users/" + work.authorId}
+              >
+                Автор: {work.author.username}
+              </Nav.Link>
+              <p className="text">
                 Категория: {work.category ?? "Не указано"}
                 <br />
                 Рейтинг: {work.rating ?? "Не указано"} <br />
@@ -66,13 +76,13 @@ const Work = ({ work }) => {
                       ))
                     : null}
                 </ul>
-              </Nav.Link>
-              <Nav.Link
+              </p>
+              <p
                 className="text"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtml(work.description),
                 }}
-              ></Nav.Link>
+              ></p>
             </ul>
           </Col>
         </Row>
@@ -83,6 +93,8 @@ const Work = ({ work }) => {
 
 const MyWorks = ({}) => {
   const [WorksList, setWorksList] = useState([]);
+  const { id: userId } = useToken();
+  const { user, setUser } = useContext(UserContext);
 
   async function getWorksList() {
     const res = await getData("works/myworks?skip=0&take=20&orderBy=asc");
@@ -102,7 +114,11 @@ const MyWorks = ({}) => {
           <div className="list">
             <ul>
               {WorksList ? (
-                WorksList.map((work) => <Work key={work.id} work={work} />)
+                WorksList.map((work) => {
+                  console.log(work);
+                  const a = work.authorId === userId;
+                  return <Work key={work.id} work={work} mywork={a} />;
+                })
               ) : (
                 <p>Работ нет</p>
               )}
@@ -137,7 +153,7 @@ const MyWorks = ({}) => {
                       </Button>
                     </Col>
                     <Col>
-                      <Button className="button">Сброс</Button>
+                      <Button className="buttontwo">Сброс</Button>
                     </Col>
                   </Row>
                 </Form>

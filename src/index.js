@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Search from "./pages/Search";
 import Works from "./pages/Works";
+import MyWork from "./pages/MyWork";
 import MyWorks from "./pages/MyWorks";
 import Work from "./pages/Work";
 import Profile from "./pages/Profile";
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Route path="/search" element={<Search />} />
           <Route path="/works" element={<Works />} />
           <Route path="/works/:id" element={<Work />} />
+          <Route path="/myworks/:id" element={<MyWork />} />
           <Route path="/users/:id" element={<Authors />} />
           <Route path="/myworks" element={<MyWorks />} />
           <Route path="/profile" element={<Profile />} />

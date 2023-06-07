@@ -4,19 +4,41 @@ $greyblue: #d5e2ff;
 $white: white;
 
 .info-page {
-    padding-left: 60px;
-    padding-top: 50px;
-    background-color: $greyblue;
-    height: 100vh;
-    // height: auto;
+  padding-left: 60px;
+  padding-top: 50px;
+  background-color: $greyblue;
+  height: 100vh;
+  // height: auto;
 
-    .form {
-        padding: 10px 5px 10px 5px;
+  .header {
+    h2 {
+      color: $darkblue;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
+  }
+
+  .accord {
+    height: auto;
+    width: 90vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: $darkblue;
+
+    .item {
+      color: $darkblue;
+
+      a {
+        color: $darkblue;
+      }
+    }
+  }
 }
 
-@media screen and (max-width:800px) {
-    .info-page {
-        padding-left: 0;
-    }
+@media screen and (max-width: 800px) {
+  .info-page {
+    padding-left: 0;
+  }
 }

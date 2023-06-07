@@ -154,7 +154,7 @@ export default function AddWorks(props) {
                 onChange={(event) => setRating(event.target.value)}
               >
                 <option value={"G"}>Нет возрастных ограничений</option>
-                <option value={"PG"}>Не рекомендуемо детям</option>
+                <option value={"PG"}>Не рекомендуется детям</option>
                 <option value={"PG_13"}>От 13 лет</option>
                 <option value={"R"}>От 16 лет</option>
                 <option value={"NC_17"}>От 17 лет</option>

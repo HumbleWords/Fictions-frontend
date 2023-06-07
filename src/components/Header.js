@@ -1,34 +1,31 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-
-import { Link } from "react-router-dom";
-
-import InputGroup from "react-bootstrap/InputGroup";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import useToken from "../hooks/useToken";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getData } from "../utils/network";
+import { UserContext } from "../App";
 
 import logo from "../assets/images/logo.png";
+import setting from "../assets/images/setting.png";
 import profile from "../assets/images/profile.png";
 import "./style/header.scss";
 
 const Header = ({ active, setActive }) => {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
+  // const {role} = useRole();
+  const { user, setUser } = useContext(UserContext);
   const { loggedIn } = useToken();
 
-  const getUser = async () => {
-    const res = await getData("users/me");
-    if (!res.success) alert(res.message);
-    else setUser(res.data);
-    console.log({ res });
-  };
+  // const getUser = async () => {
+  //   const res = await getData("users/me");
+  //   if (!res.success) alert(res.message);
+  //   else setUser(res.data);
+  //   console.log({ res });
+  // };
 
-  useEffect(() => {
-    if (loggedIn) getUser();
-  }, []);
+  // useEffect(() => {
+  //   if (loggedIn) getUser();
+  // }, []);
 
   return (
     <Navbar className="nav">
@@ -42,14 +39,20 @@ const Header = ({ active, setActive }) => {
           <img src={logo} />
         </a>
       </div>
-
-      <div className="profile">
-        {loggedIn ? (
-          <a href="/profile">
-            <img src={profile} />
-          </a>
-        ) : null}
-      </div>
+      
+      {loggedIn ? (
+        <div className="profile">
+          {user && user.role == "ADMIN" ? (
+            <a href="/admin">
+              <img src={setting} />
+            </a>
+          ) : (
+            <a href="/profile">
+              <img src={profile} />
+            </a>
+          )}
+        </div>
+      ) : null}
     </Navbar>
   );
 };

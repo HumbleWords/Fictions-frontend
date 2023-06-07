@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 import "../style/works.scss";
 import cover from "../assets/images/cover1.png";
+import { Button } from "react-bootstrap";
 
 const WorkParts = ({ workPart }) => {
   const decodeHtml = (html) => {
@@ -44,7 +45,7 @@ const WorkParts = ({ workPart }) => {
   );
 };
 
-const Work = () => {
+const MyWork = () => {
   const [work, setWork] = useState({});
   const [WorkPartList, setWorkPartList] = useState({});
 
@@ -52,12 +53,7 @@ const Work = () => {
   console.log(id);
 
   const getWork = async () => {
-    // if (mywork) {
-    //   const res = await getData(`myworks/${id}`);
-    //   if (res.success) setWork(res.data);
-    //   return
-    // }
-    const res = await getData(`works/${id}`);
+    const res = await getData(`works/myworks/${id}`);
     if (res.success) setWork(res.data);
   };
 
@@ -101,12 +97,13 @@ const Work = () => {
                 </h3>
                 <ul>
                   <Nav.Link
-                    as={Link}
                     className="text"
-                    to={"/users/" + work?.authorId}
+                    as={Link}
+                    to={"/users/" + work.authorId}
                   >
                     Автор: {work?.author?.username}
                   </Nav.Link>
+                  Статус: {work.status} <br />
                   Категория: {work?.category ?? "Не указано"}
                   <br />
                   Рейтинг: {work?.rating ?? "Не указано"} <br />
@@ -147,6 +144,8 @@ const Work = () => {
                 </ul>
               </Col>
             </Row>
+            <Button>Изменить</Button>
+            <Button>Удалить</Button>
           </Card.Body>
         </Card>
 
@@ -166,4 +165,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default MyWork;

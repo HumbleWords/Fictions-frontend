@@ -57,9 +57,9 @@ const Works = ({ work }) => {
                 as={Link}
                 to={"/users/" + work.authorId}
               >
-                Автор: {work.authorId}
+                Автор: {work.author.username}
               </Nav.Link>
-              <Nav.Link className="text">
+              <p className="text">
                 Категория: {work.category ?? "Не указано"}
                 <br />
                 Рейтинг: {work.rating ?? "Не указано"} <br />
@@ -91,13 +91,13 @@ const Works = ({ work }) => {
                       ))
                     : null}
                 </ul>
-              </Nav.Link>
-              <Nav.Link
+              </p>
+              <p
                 className="text"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtml(work.description),
                 }}
-              ></Nav.Link>
+              ></p>
             </ul>
           </Col>
         </Row>
@@ -196,13 +196,14 @@ const Home = () => {
           </Carousel>
         </div>
 
-        <div className="search">
-          <input type="search" placeholder="Найти" />
-          <button type="submit">
-            <img src={search} />
-          </button>
+        <div className="sear">
+          <div className="search">
+            <input type="search" placeholder="Найти" />
+            <button type="submit">
+              <img src={search} />
+            </button>
+          </div>
         </div>
-
         {loggedIn ? null : (
           <div className="call">
             <Card className="card">

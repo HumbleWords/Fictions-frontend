@@ -6,40 +6,56 @@ import "../style/search.scss";
 const Search = () => {
   return (
     <div className="search-page">
-      <Form>
+      <h1>Поиск</h1>
+      <Form className="form">
         <div className="info">
-          <Card>
+          <Card className="card">
+            <Card.Title className="title">Информация о работе</Card.Title>
             <Form.Group className="input" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Название</Form.Label>
+              <Form.Control type="text" />
             </Form.Group>
             <Form.Group className="input" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Автор</Form.Label>
+              <Form.Control type="text"/>
             </Form.Group>
             <Form.Group className="input" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Язык</Form.Label>
+              <Form.Control type="text" />
             </Form.Group>
           </Card>
         </div>
         <div className="tegs">
           <Card>
+            <Card.Title className="title">Теги</Card.Title>
             <Form.Group className="input" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Фандомы</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group className="input" controlId="formBasicEmail">
+              <Form.Label>Теги</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group className="input" controlId="formBasicEmail">
+              <Form.Label>Рейтинг</Form.Label>
+              <Form.Control type="text" />
             </Form.Group>
           </Card>
         </div>
         <div className="sort">
           <Card>
+            <Card.Title className="title">Сортировка</Card.Title>
             <Form.Group className="input" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Сортировать по</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group className="input" controlId="formBasicEmail">
+              <Form.Label>Направление сортировки</Form.Label>
+              <Form.Control type="text" />
             </Form.Group>
           </Card>
         </div>
-        <Button type="submit">Поиск</Button>
+        <Button className="button" type="submit">Поиск</Button>
       </Form>
     </div>
   );

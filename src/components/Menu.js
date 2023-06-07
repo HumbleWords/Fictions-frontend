@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 import { useLocation } from "react-router";
 import useToken from "../hooks/useToken";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getData } from "../utils/network";
+import { UserContext } from "../App";
 
 import "./style/header.scss";
 import home from "../assets/images/home.png";
@@ -17,20 +18,21 @@ import login from "../assets/images/login.png";
 import logout from "../assets/images/logout.png";
 
 const Menu = ({ active, setActive }) => {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
+  // const {user, setUser} = useContext(UserContext);
   const { pathname } = useLocation();
   const { loggedIn } = useToken();
 
-  const getUser = async () => {
-    const res = await getData("users/me");
-    if (!res.success) alert(res.message);
-    else setUser(res.data);
-    console.log({ res });
-  };
+  // const getUser = async () => {
+  //   const res = await getData("users/me");
+  //   if (!res.success) alert(res.message);
+  //   else setUser(res.data);
+  //   console.log({ res });
+  // };
 
-  useEffect(() => {
-    if (loggedIn) getUser();
-  }, []);
+  // useEffect(() => {
+  //   if (loggedIn) getUser();
+  // }, []);
 
   return (
     <Navbar className="menu">

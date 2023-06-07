@@ -8,6 +8,7 @@ $white: white;
   padding-left: 60px;
   padding-top: 50px;
   background-color: $greyblue;
+  // background-color: #C1C8E4;
   height: auto;
   padding-bottom: 20px;
   overflow: hidden;
@@ -17,8 +18,8 @@ $white: white;
     ul {
       .card {
         width: 50vw;
-        // height: auto;
-        height: 35.5vh;
+        height: auto;
+        // height: 35.5vh;
         margin-top: 20px;
         border-radius: 20px;
 
@@ -42,9 +43,10 @@ $white: white;
         }
 
         .container {
-          height: 29vh;
+          height: auto;
+          // height: 29vh;
           display: -webkit-box;
-          -webkit-line-clamp: 8;
+          -webkit-line-clamp: 9;
           -webkit-box-orient: vertical;
           overflow: hidden;
 
@@ -61,7 +63,6 @@ $white: white;
           }
 
           .desc {
-            // float: left;
             color: $blue;
           }
         }
@@ -95,9 +96,21 @@ $white: white;
           border: none;
           border-radius: 15px;
           background-color: $darkblue;
+          // background-color: #f76c6c;
           display: block;
           // margin-left: auto;
           // margin-right: auto;
+          margin-top: 5px;
+        }
+
+        .buttontwo {
+          width: auto;
+          color: $white;
+          border: none;
+          border-radius: 15px;
+          background-color: #f76c6c;
+          display: block; 
+          margin-top: 5px;
         }
       }
     }
@@ -111,16 +124,17 @@ $white: white;
       margin-bottom: 20px;
       width: 90vw;
       height: auto;
-      border-radius: 20px;
+      border-radius: 5px;
 
       img {
         width: 250px;
         height: auto;
-        border-radius: 15px;
+        border-radius: 10px;
       }
 
       .container {
         margin-top: -6px;
+        // display: block;
         align-items: flex-start;
 
         .title {
@@ -129,9 +143,33 @@ $white: white;
           margin-left: 30px;
         }
 
-        .desc {
-          // float: left;
+        ul {
           color: $blue;
+        }
+      }
+    }
+
+    .part {
+      padding-left: 60px;
+      // overflow: hidden;
+      ul {
+        margin: 20px;
+        .card {
+          background-color: $white;
+          border: none;
+          border-radius: 5px;
+          width: 90vw;
+          height: auto;
+
+          .container {
+            display: block;
+            align-items: flex-start;
+            ul {
+              .title{
+
+              }
+            }
+          }
         }
       }
     }
@@ -146,6 +184,12 @@ $white: white;
         .card {
           height: auto;
         }
+      }
+    }
+
+    .workone {
+      .part {
+        padding-left: 0;
       }
     }
   }

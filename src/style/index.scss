@@ -86,15 +86,11 @@ $white: white;
       margin-right: auto;
 
       width: 60vw;
-      height: 39vh;
-      // height: auto;
+      // height: 39vh;
+      height: auto;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-
-      &:hover {
-        height: auto;
-      }
 
       img {
         height: auto;
@@ -108,7 +104,8 @@ $white: white;
       }
 
       .container {
-        height: 32vh;
+        height: auto;
+        // height: 32vh;
         // white-space: nowrap;
         display: -webkit-box;
         -webkit-line-clamp: 9;
@@ -149,6 +146,10 @@ $white: white;
   }
 
   // Поиск
+
+  .sear {
+    padding-left: 60px;
+  }
   .search {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -331,7 +332,7 @@ $white: white;
       }
     }
 
-    .search {
+    .sear {
       padding-left: 0;
     }
 

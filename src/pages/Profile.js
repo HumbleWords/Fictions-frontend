@@ -1,33 +1,31 @@
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
-import { getData } from "../utils/network";
+import { useContext, useEffect, useState } from "react";
+// import { getData } from "../utils/network";
 
 import "../style/profile.scss";
+import { UserContext } from "../App";
 
 const Profile = () => {
-  const [user, setUser] = useState({});
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const getUser = async () => {
-    const res = await getData("users/me");
-    if (!res.success) alert(res.message);
-    else setUser(res.data);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
   return (
     <div className="profile-page">
-      <a>Profile</a>
-      <h1>{user.username}</h1>
+      <h2>Профиль</h2>
+      <Card className="data">
+        <a>{user?.username}</a>
+        <a>{user?.email}</a>
+        <a>{user?.birthdate}</a>
+      </Card>
       <Button
+        className="button"
         onClick={() => {
           localStorage.removeItem("access_token");
           navigate("/");
-        }}>
+        }}
+      >
         Выход
       </Button>
     </div>
