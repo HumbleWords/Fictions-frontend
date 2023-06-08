@@ -3,9 +3,9 @@ import ReactQuill from "react-quill";
 
 const CommentForm = () => {
   return (
-    <div>
+    <div className="mb-5">
       <ReactQuill />
-      <Button>Отправить</Button>
+      <Button className="button">Отправить</Button>
     </div>
   );
 };

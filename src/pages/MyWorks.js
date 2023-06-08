@@ -11,6 +11,22 @@ import cover from "../assets/images/cover1.png";
 import { UserContext } from "../App";
 import useToken from "../hooks/useToken";
 
+const CATEGORIES = {
+  GEN: "Нет любовных линий",
+  F_M: "Гет",
+  M_M: "ММ",
+  F_F: "ЖЖ",
+  OTHER: "Другое",
+};
+
+const RATINGS = {
+  G: "Нет возрастных ограничений",
+  PG: "Не рекомендуется детям",
+  PG_13: "От 13 лет",
+  R: "От 16 лет",
+  NC_17: "От 17 лет",
+};
+
 const Work = ({ work, mywork }) => {
   const navigate = useNavigate();
 
@@ -50,9 +66,13 @@ const Work = ({ work, mywork }) => {
                 Автор: {work.author.username}
               </Nav.Link>
               <p className="text">
-                Категория: {work.category ?? "Не указано"}
+              Категория:{" "}
+                {work.category ? CATEGORIES[work.category] : "Не указано"}
                 <br />
-                Рейтинг: {work.rating ?? "Не указано"} <br />
+                Рейтинг: {work.rating
+                  ? RATINGS[work.rating]
+                  : "Не указано"}{" "}
+                <br />
                 Фандомы:{" "}
                 <ul className="list">
                   {work.fandoms

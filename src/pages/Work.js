@@ -13,6 +13,22 @@ import cover from "../assets/images/cover1.png";
 import useToken from "../hooks/useToken";
 import CommentForm from "../components/CommentForm";
 
+const CATEGORIES = {
+  GEN: "Нет любовных линий",
+  F_M: "Гет",
+  M_M: "ММ",
+  F_F: "ЖЖ",
+  OTHER: "Другое",
+};
+
+const RATINGS = {
+  G: "Нет возрастных ограничений",
+  PG: "Не рекомендуется детям",
+  PG_13: "От 13 лет",
+  R: "От 16 лет",
+  NC_17: "От 17 лет",
+};
+
 const WorkParts = ({ workPart }) => {
   const decodeHtml = (html) => {
     let txt = document.createElement("textarea");
@@ -89,9 +105,13 @@ const Work = () => {
                 xxl={9}
               >
                 <ul className="description">
-                  Категория: {work?.category ?? "Не указано"}
+                  Категория:{" "}
+                  {work.category ? CATEGORIES[work.category] : "Не указано"}
                   <br />
-                  Рейтинг: {work?.rating ?? "Не указано"} <br />
+                  Рейтинг: {work.rating
+                    ? RATINGS[work.rating]
+                    : "Не указано"}{" "}
+                  <br />
                   Фандомы:{" "}
                   <ul className="list">
                     {work?.fandoms

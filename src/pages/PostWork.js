@@ -48,7 +48,7 @@ const PostWork = () => {
         tags = currentTags.concat(f);
       }
     });
-    setTag("")
+    setTag("");
     setCurrentTags(tags);
   };
 
@@ -85,7 +85,7 @@ const PostWork = () => {
         fandoms = currentFandoms.concat(f);
       }
     });
-    setFandom("")
+    setFandom("");
     setCurrentFandoms(fandoms);
   };
 
@@ -263,32 +263,6 @@ const PostWork = () => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Теги:</Form.Label>
-                {currentTags.map((tag, i) => (
-                  <Badge bg="light" text="dark" key={i}>
-                    {tag.name}
-                    <CloseButton value={i} onClick={deleteTag} />
-                  </Badge>
-                ))}
-                <Form.Group>
-                  <Form.Control
-                    list="tagsList"
-                    onChange={searchTags}
-                    id="tagInput"
-                    autoComplete="off"
-                    value={tag}
-                  ></Form.Control>
-                  <datalist id="tagsList">
-                    {foundTags.map((tag, i) => (
-                      <option value={tag.name} key={i} />
-                    ))}
-                  </datalist>
-                  <Button onClick={addTag} className="mt-2 secondary-button" size="sm" variant="secondary">
-                    Добавить тег
-                  </Button>
-                </Form.Group>
-              </Form.Group>
-              <Form.Group>
                 <Form.Label>Фандомы:</Form.Label>
                 {currentFandoms.map((fandom, i) => (
                   <Badge bg="light" text="dark" key={i}>
@@ -309,11 +283,48 @@ const PostWork = () => {
                       <option value={fandom.name} key={i} />
                     ))}
                   </datalist>
-                  <Button onClick={addFandom} className="mt-2 secondary-button" size="sm" variant="secondary">
+                  <Button
+                    onClick={addFandom}
+                    className="mt-2 secondary-button"
+                    size="sm"
+                    variant="secondary"
+                  >
                     Добавить фандом
                   </Button>
                 </Form.Group>
               </Form.Group>
+              <Form.Group>
+                <Form.Label>Теги:</Form.Label>
+                {currentTags.map((tag, i) => (
+                  <Badge bg="light" text="dark" key={i}>
+                    {tag.name}
+                    <CloseButton value={i} onClick={deleteTag} />
+                  </Badge>
+                ))}
+                <Form.Group>
+                  <Form.Control
+                    list="tagsList"
+                    onChange={searchTags}
+                    id="tagInput"
+                    autoComplete="off"
+                    value={tag}
+                  ></Form.Control>
+                  <datalist id="tagsList">
+                    {foundTags.map((tag, i) => (
+                      <option value={tag.name} key={i} />
+                    ))}
+                  </datalist>
+                  <Button
+                    onClick={addTag}
+                    className="mt-2 secondary-button"
+                    size="sm"
+                    variant="secondary"
+                  >
+                    Добавить тег
+                  </Button>
+                </Form.Group>
+              </Form.Group>
+
               <Form.Group>
                 <Form.Label>Текст работы:</Form.Label>
                 <ReactQuill
@@ -358,7 +369,9 @@ const PostWork = () => {
                   <option value={"PUBLISHED"}>Опубликована</option>
                 </Form.Select>
               </Form.Group>
-              <Button className="submit-button" onClick={postWork}>Post New Work</Button>
+              <Button className="submit-button" onClick={postWork}>
+                Post New Work
+              </Button>
             </Form>
           </Card>
         </div>
