@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getData } from "../utils/network";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -28,6 +28,8 @@ const RATINGS = {
   R: "От 16 лет",
   NC_17: "От 17 лет",
 };
+
+export const CommentContext = React.createContext([]);
 
 const WorkParts = ({ workPart }) => {
   const decodeHtml = (html) => {
@@ -64,6 +66,7 @@ const WorkParts = ({ workPart }) => {
 
 const Work = () => {
   const [work, setWork] = useState({});
+  const [comments, setComments] = useState([]);
 
   const { loggedIn } = useToken();
 
@@ -75,8 +78,14 @@ const Work = () => {
     if (res.success) setWork(res.data);
   };
 
+  const fetchComments = async () => {
+    const res = await getData(`comments/work/${id}`);
+    if (res.success) setComments(res.data);
+  };
+
   useEffect(() => {
     getWork();
+    fetchComments();
   }, []);
 
   const decodeHtml = (html) => {
@@ -222,17 +231,56 @@ const Work = () => {
             )}
           </ul>
         </div>
-        <div className="comment-section">
-          <Card className="card">
-            <Card.Body>
-              <h2>Комментарии</h2>
-              <div xs={8} className="container">
-                {loggedIn ? <CommentForm /> : null}
-                {work?.comments ? <ul> </ul> : <p>Комментариев нет</p>}
-              </div>
-            </Card.Body>
-          </Card>
-        </div>
+        <CommentContext.Provider
+          value={{ comments: comments, setComments: setComments }}
+        >
+          <div className="comment-section">
+            <Card className="card">
+              <Card.Body>
+                <h2>Комментарии</h2>
+                <div xs={8} className="container">
+                  {loggedIn ? (
+                    <CommentForm
+                      workPartId={work?.parts ? work?.parts[0].id : 0}
+                      workId={work?.id}
+                    />
+                  ) : null}
+                  {comments ? (
+                    <ul>
+                      {comments.map((comment, index) => (
+                        <Card key={index} className="comment-card">
+                          <Card.Header>
+                            <Link to={`/users/${comment.userId}`}>
+                              {comment.user.username}
+                            </Link>
+                            <p>{`${new Date(
+                              comment.createdAt
+                            ).getDate()}.${new Date(
+                              comment.createdAt
+                            ).getMonth()}.${new Date(
+                              comment.createdAt
+                            ).getFullYear()}`}</p>
+                          </Card.Header>
+                          <Card.Body
+                            style={{
+                              fontSize: "14px",
+                              wordBreak: "break-word",
+                            }}
+                            dangerouslySetInnerHTML={{
+                              __html: decodeHtml(comment.text),
+                            }}
+                          ></Card.Body>
+                        </Card>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>Комментариев нет</p>
+                  )}
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
+        </CommentContext.Provider>
       </div>
     </div>
   );

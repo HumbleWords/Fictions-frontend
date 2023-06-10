@@ -12,7 +12,7 @@ const Footer = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="footer" fluid>
+    <div className="footer" fluid="true">
       <Row>
         <Col>
           <h1>ИНФО</h1>

@@ -245,7 +245,7 @@ $white: white;
       width: 90vw;
       height: auto;
       border-radius: 5px;
-      
+
       .button {
         width: auto;
         color: $white;
@@ -258,13 +258,30 @@ $white: white;
 
       ul {
         padding: 0;
-
-        
       }
     }
 
     .ql-editor {
       min-height: 25vh;
+    }
+
+    .comment-card {
+      width: 100%;
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+
+        & > p {
+          margin: 0;
+        }
+      }
+
+      .card-body {
+        & > p {
+          margin: 0;
+        }
+      }
     }
   }
 }
