@@ -1,0 +1,37 @@
+$darkblue: #334170;
+$blue: #37598c;
+$greyblue: #d5e2ff;
+$white: white;
+$black: black;
+$red: #f76c6c;
+
+:root {
+  --left_menu_width: 60px;
+}
+
+$title_font_size: 20px;
+$title_font_weight: 500;
+
+$top_menu_height: 50px;
+
+@font-face {
+  font-family: fontss;
+  src: url(../assets/fonts/fontss.ttf);
+}
+
+span.divider {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: $blue;
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  :root {
+    --left_menu_width: 0px;
+  }
+}

@@ -5,11 +5,12 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { getData } from "../utils/network";
 
-import "../style/works.scss";
+// import "../style/works.scss";
 import cover from "../assets/images/cover1.png";
 
 import { UserContext } from "../App";
 import useToken from "../hooks/useToken";
+import WorkCard from "../components/WorkCard";
 
 const CATEGORIES = {
   GEN: "Нет любовных линий",
@@ -153,10 +154,11 @@ const MyWorks = ({}) => {
                 Добавить работу
               </Button>
               {WorksList.length > 0 ? (
-                WorksList.map((work) => {
+                WorksList.map((work, index) => {
                   console.log(work);
                   const a = work.authorId === userId;
-                  return <Work key={work.id} work={work} mywork={a} />;
+                  // return <Work key={work.id} work={work} mywork={a} />;
+                  return <WorkCard key={index} work={work} mywork={true} />
                 })
               ) : (
                 <p className="noworks">Работ нет</p>

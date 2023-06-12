@@ -13,17 +13,6 @@ $white: white;
   padding-bottom: 20px;
   overflow: hidden;
 
-  span.divider {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    background-color: $blue;
-    width: 100%;
-    height: 1px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
   .list {
     margin-top: 20px;
     .noworks {
@@ -43,25 +32,25 @@ $white: white;
     }
     ul {
       .card {
-        width: 50vw;
-        height: auto;
-        margin-top: 20px;
-        border-radius: 5px;
+        // width: 50vw;
+        // height: auto;
+        // margin-top: 20px;
+        // border-radius: 5px;
 
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        // display: flex;
+        // justify-content: center;
+        // align-items: flex-start;
 
-        img {
-          width: 150px;
-          height: auto;
-          border-radius: 10px;
-          cursor: pointer;
+        // img {
+        //   width: 150px;
+        //   height: auto;
+        //   border-radius: 10px;
+        //   cursor: pointer;
 
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        }
+        //   display: block;
+        //   margin-left: auto;
+        //   margin-right: auto;
+        // }
 
         .container {
           height: auto;
@@ -203,15 +192,6 @@ $white: white;
           flex-direction: column;
           align-items: center;
           margin-bottom: 20px;
-
-          h3 {
-            font-size: 24px;
-          }
-
-          h4 {
-            width: 60%;
-            font-size: 18px;
-          }
 
           .text {
             width: 60%;

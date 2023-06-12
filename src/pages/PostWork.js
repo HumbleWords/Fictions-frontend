@@ -121,7 +121,7 @@ const PostWork = () => {
       description: null,
       note: null,
       text,
-      order: 0,
+      order: 1,
       status,
       workId: response.data.id,
     });

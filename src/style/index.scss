@@ -8,10 +8,6 @@ $white: white;
   src: url(../../src/assets/fonts/fontss.ttf);
 }
 
-// body {
-//   // background-color: $darkblue;
-// }
-
 .main {
   // отступ содержимого
   overflow: hidden;
@@ -20,8 +16,8 @@ $white: white;
   // padding-top: 50px;
   // padding-left: 60px;
 
-  .backgraund {
-    background-image: url("../../src/assets/images/backgraund.jpg");
+  .background {
+    background-image: url("../../src/assets/images/background.jpg");
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
@@ -75,7 +71,7 @@ $white: white;
     }
 
     .card {
-      padding: 10px 10px 5px 10px;
+      // padding: 10px 10px 5px 10px;
       margin-top: 3vh;
       margin-bottom: 5vh;
       //   width: 60vw;
@@ -92,16 +88,16 @@ $white: white;
       justify-content: center;
       align-items: flex-start;
 
-      img {
-        height: auto;
-        width: 150px;
-        margin-left: auto;
-        margin-right: auto;
-        // margin-top: 20px;
-        display: block;
-        border-radius: 10px;
-        cursor: pointer;
-      }
+      // img {
+      //   height: auto;
+      //   width: 150px;
+      //   margin-left: auto;
+      //   margin-right: auto;
+      //   // margin-top: 20px;
+      //   display: block;
+      //   border-radius: 10px;
+      //   cursor: pointer;
+      // }
 
       .container {
         height: auto;
@@ -308,7 +304,7 @@ $white: white;
 
 @media screen and (max-width: 800px) {
   .main {
-    .backgraund {
+    .background {
       padding-top: 25px;
     }
 
@@ -356,7 +352,7 @@ $white: white;
 
 @media screen and (max-width: 670px) {
   .main {
-    .backgraund {
+    .background {
       padding-top: 20px;
     }
 

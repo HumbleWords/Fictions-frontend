@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,11 +16,13 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Authors from "./pages/Authors";
 import Info from "./pages/Info";
-import PostWork from './pages/PostWork';
+import PostWork from "./pages/PostWork";
+import ScrollToTop from "./components/ScrollToTop";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
@@ -32,7 +34,7 @@ ReactDOM.render(
           <Route path="/myworks/:id" element={<MyWork />} />
           <Route path="/users/:id" element={<Authors />} />
           <Route path="/myworks" element={<MyWorks />} />
-          <Route path='/postwork' element={<PostWork />} />
+          <Route path="/postwork" element={<PostWork />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
@@ -43,4 +45,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-

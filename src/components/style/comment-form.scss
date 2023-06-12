@@ -1,0 +1,29 @@
+@import "../../style/constants";
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 25px 0;
+
+  .quill {
+    .ql-toolbar {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    .ql-container {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .ql-editor {
+      min-height: 15vh;
+    }
+  }
+
+  .button {
+    color: $white;
+    background-color: $darkblue;
+  }
+}

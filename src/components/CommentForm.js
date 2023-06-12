@@ -4,6 +4,8 @@ import { getData, postData } from "../utils/network";
 import { useContext, useState } from "react";
 import { CommentContext } from "../pages/Work";
 
+import "./style/comment-form.scss"
+
 const CommentForm = ({ workPartId, workId }) => {
   const [comment, setComment] = useState("<p></p>");
   const { comments, setComments } = useContext(CommentContext);
@@ -24,7 +26,7 @@ const CommentForm = ({ workPartId, workId }) => {
   }
 
   return (
-    <div className="mb-5">
+    <div className="comment-form">
       <ReactQuill
         value={comment}
         modules={{

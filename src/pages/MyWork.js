@@ -1,53 +1,25 @@
 import Nav from "react-bootstrap/Nav";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getData } from "../utils/network";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-import "../style/works.scss";
-import cover from "../assets/images/cover1.png";
-import { Button } from "react-bootstrap";
+import "./style/work.scss"
+import WorkHeader from "../components/WorkHeader";
+import WorkPart from "../components/WorkPart";
+import decodeHtml from "../utils/decodeHtml";
+import useToken from "../hooks/useToken";
+import CommentForm from "../components/CommentForm";
 
-const WorkParts = ({ workPart }) => {
-  const decodeHtml = (html) => {
-    let txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-  };
-
-  return (
-    <Card className="card">
-      <Card.Body>
-        <div xs={8} className="container">
-          <Card.Title className="title">{workPart.title}</Card.Title>
-
-          <ul>
-            <p
-              className="text"
-              dangerouslySetInnerHTML={{
-                __html: decodeHtml(workPart.description),
-              }}
-            ></p>
-            <p
-              className="text"
-              dangerouslySetInnerHTML={{
-                __html: decodeHtml(workPart.text),
-              }}
-            ></p>
-          </ul>
-        </div>
-      </Card.Body>
-    </Card>
-  );
-};
+export const CommentContext = React.createContext([])
 
 const MyWork = () => {
   const [work, setWork] = useState({});
-  const [WorkPartList, setWorkPartList] = useState({});
+  const [comments, setComments] = useState([]);
+
+  const {loggedIn} = useToken()
 
   const { id } = useParams();
   console.log(id);
@@ -57,110 +29,152 @@ const MyWork = () => {
     if (res.success) setWork(res.data);
   };
 
-  const getWorkPart = async () => {
-    const res = await getData(`workparts/${id}`);
-    if (res.success) setWorkPartList(res.data);
+  const fetchComments = async () => {
+    const res = await getData(`comments/work/${id}`);
+    if (res.success) setComments(res.data);
   };
 
   useEffect(() => {
     getWork();
-    getWorkPart();
+    fetchComments();
   }, []);
-
-  const decodeHtml = (html) => {
-    let txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-  };
 
   return (
     <div className="work-page">
-      <div className="workone">
-        <Card className="card">
-          <Card.Body>
-            <Row>
-              <Col xxs={6} xs={6} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                <img src={cover} />
-              </Col>
-              <Col
-                className="container"
-                xxs={6}
-                xs={6}
-                sm={6}
-                md={8}
-                lg={9}
-                xl={8}
-                xxl={9}
-              >
-                <h3 className="title">
-                  {work?.title} {work?.id}
-                </h3>
-                <ul>
-                  <Nav.Link
-                    className="text"
-                    as={Link}
-                    to={"/users/" + work.authorId}
-                  >
+      <WorkHeader work={work} />
+
+      <div className="part">
+        {work?.parts && work.parts.length === 1 ? (
+          <Card>
+            <Card.Body>
+              <div className="heading">
+                <h2>{work.title}</h2>
+                <h4>
+                  <Nav.Link as={Link} to={"/users/" + work?.authorId}>
                     Автор: {work?.author?.username}
                   </Nav.Link>
-                  Статус: {work.status} <br />
-                  Категория: {work?.category ?? "Не указано"}
-                  <br />
-                  Рейтинг: {work?.rating ?? "Не указано"} <br />
-                  Фандомы:{" "}
-                  <ul>
-                    {work?.fandoms
-                      ? work?.fandoms.map((fandom) => (
-                          <Nav.Link
-                            as={Link}
-                            className="text"
-                            to={"/fandoms/" + fandom.id}
-                          >
-                            <span key={fandom.id}>{fandom.name}, </span>
-                          </Nav.Link>
-                        ))
-                      : null}
-                  </ul>
-                  Теги:{" "}
-                  <ul>
-                    {work?.tags
-                      ? work?.tags.map((tag) => (
-                          <Nav.Link
-                            as={Link}
-                            className="text"
-                            to={"/tags/" + tag.id}
-                          >
-                            <span key={tag.id}>{tag.name}, </span>
-                          </Nav.Link>
-                        ))
-                      : null}
-                  </ul>
-                  <p
-                    className="text"
-                    dangerouslySetInnerHTML={{
-                      __html: decodeHtml(work?.description),
-                    }}
-                  ></p>
-                </ul>
-              </Col>
-            </Row>
-            <Button>Изменить</Button>
-            <Button>Удалить</Button>
-          </Card.Body>
-        </Card>
-
-        <div className="part">
-          <ul>
-            {work?.parts && work.parts.length > 0 ? (
-              work.parts?.map((workPart) => (
-                <WorkParts key={workPart.id} workPart={workPart} />
-              ))
-            ) : (
-              <p>На данный момент здесь пусто</p>
-            )}
-          </ul>
-        </div>
+                </h4>
+                <span className="divider" />
+                <h4>Описание работы</h4>
+                <div
+                  className="text"
+                  dangerouslySetInnerHTML={{
+                    __html: decodeHtml(work.description),
+                  }}
+                ></div>
+                {work.note ? (
+                  <div>
+                    <h4>Примечания автора</h4>
+                    <div
+                      className="text"
+                      dangerouslySetInnerHTML={{
+                        __html: decodeHtml(work.note),
+                      }}
+                    ></div>
+                  </div>
+                ) : null}
+                <span className="divider" />
+              </div>
+              <div
+                xs={8}
+                className="container"
+                dangerouslySetInnerHTML={{
+                  __html: decodeHtml(work.parts[0].text),
+                }}
+              ></div>
+            </Card.Body>
+          </Card>
+        ) : work?.parts && work.parts.length > 0 ? (
+          <Card>
+            <Card.Body>
+              <div className="heading">
+                <h2>{work.title}</h2>
+                <h4>
+                  <Nav.Link as={Link} to={"/users/" + work?.authorId}>
+                    Автор: {work?.author?.username}
+                  </Nav.Link>
+                </h4>
+                <span className="divider" />
+                <h4>Описание работы</h4>
+                <div
+                  className="text"
+                  dangerouslySetInnerHTML={{
+                    __html: decodeHtml(work.description),
+                  }}
+                ></div>
+                {work.note ? (
+                  <div>
+                    <h4>Примечания автора</h4>
+                    <div
+                      className="text"
+                      dangerouslySetInnerHTML={{
+                        __html: decodeHtml(work.note),
+                      }}
+                    ></div>
+                  </div>
+                ) : null}
+                <span className="divider" />
+              </div>
+              {work.parts?.map((workPart, index) => (
+                <WorkPart key={index} workPart={workPart} />
+              ))}
+            </Card.Body>
+          </Card>
+        ) : (
+          <p>На данный момент здесь пусто</p>
+        )}
       </div>
+
+      <CommentContext.Provider
+        value={{ comments: comments, setComments: setComments }}
+      >
+        <div className="comment-section">
+          <Card>
+            <Card.Body>
+              <h2>Комментарии</h2>
+              <div xs={8} className="container">
+                {loggedIn ? (
+                  <CommentForm
+                    workPartId={work?.parts ? work?.parts[0].id : 0}
+                    workId={work?.id}
+                  />
+                ) : null}
+                {comments ? (
+                  <div>
+                    {comments.map((comment, index) => (
+                      <Card key={index} className="comment-card">
+                        <Card.Header>
+                          <Link to={`/users/${comment.userId}`}>
+                            {comment.user.username}
+                          </Link>
+                          <p>{`${new Date(
+                            comment.createdAt
+                          ).getDate()}.${new Date(
+                            comment.createdAt
+                          ).getMonth()}.${new Date(
+                            comment.createdAt
+                          ).getFullYear()}`}</p>
+                        </Card.Header>
+                        <Card.Body
+                          style={{
+                            fontSize: "14px",
+                            wordBreak: "break-word",
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: decodeHtml(comment.text),
+                          }}
+                        ></Card.Body>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <p>Комментариев нет</p>
+                )}
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+      </CommentContext.Provider>
     </div>
   );
 };

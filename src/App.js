@@ -23,6 +23,7 @@ const App = () => {
           return 
         }
       localStorage.removeItem("access_token");
+      setUser(null)
       });
   }, []);
 

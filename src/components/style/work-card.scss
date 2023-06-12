@@ -1,0 +1,83 @@
+@import "../../style/constants";
+
+.work-card {
+  border-radius: 5px;
+
+  [class~="col"] {
+    padding: 0;
+  }
+
+  .image-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    width: auto;
+    border-radius: 5px;
+    max-height: 200px;
+  }
+
+  .description-col {
+    color: $blue;
+  }
+
+  .title {
+    color: $darkblue;
+    font-size: $title_font_size;
+    font-weight: $title_font_weight;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      &:has(ul) {
+        display: flex;
+        gap: 3px;
+      }
+
+      & > a {
+        color: $blue
+      }
+
+      & > p {
+        margin: 0;
+      }
+
+      & > ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+
+        li {
+          &:not(:last-child)::after {
+            content: ",";
+          }
+
+          & > a {
+            color: $blue;
+          }
+        }
+      }
+    }
+  }
+
+  .card-footer {
+    width: 100%;
+
+    ul {
+      margin: 0;
+      display: flex;
+      justify-content: end;
+      gap: 5px;
+
+      li {
+        &:not(:last-child)::after {
+          content: ",";
+        }
+      }
+    }
+  }
+}
