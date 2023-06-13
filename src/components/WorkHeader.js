@@ -1,10 +1,10 @@
-import { Card, Col, Image, Row } from "react-bootstrap";
+import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import cover from "../assets/images/cover1.png";
 import { CATEGORIES, LANGUAGES, RATINGS } from "../utils/constants";
 import "./style/work-card.scss";
 
-const WorkHeader = ({ work }) => {
+const WorkHeader = ({ work, mywork = false }) => {
   return (
     <Card className="work-card">
       <Card.Body>
@@ -44,6 +44,11 @@ const WorkHeader = ({ work }) => {
             </ul>
           </Col>
         </Row>
+        {mywork ? <Row className="mt-3">
+          <Col xs={12} lg={3} style={{display: 'flex', justifyContent: "center"}}>
+          <Button className="button">Редактировать</Button>
+          </Col>
+        </Row> : null}
       </Card.Body>
       <Card.Footer>
         <ul className="statistics">

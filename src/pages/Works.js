@@ -24,7 +24,7 @@ const Works = ({}) => {
       )}`
     );
     if (!res.success) return alert(res.message);
-    console.log({ res });
+    // console.log({ res });
     return setWorksList(res.data);
   }
 

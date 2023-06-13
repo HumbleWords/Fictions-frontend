@@ -17,7 +17,6 @@ const App = () => {
   useEffect(() => {
     if (loggedIn)
       getData("users/me").then((res) => {
-        console.log(res)
         if (res.success) {
           setUser(res.data);
           return 

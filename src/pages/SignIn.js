@@ -34,7 +34,7 @@ const SignIn = () => {
       password,
     });
     if (res.success) {
-      console.log({ res });
+      // console.log({ res });
       localStorage.setItem("access_token", res.data.access_token);
       getData("users/me").then((response) => {
         if (response.success) {

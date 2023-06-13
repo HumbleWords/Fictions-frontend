@@ -21,7 +21,7 @@ const Work = () => {
   const { loggedIn } = useToken();
 
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const getWork = async () => {
     const res = await getData(`works/${id}`);

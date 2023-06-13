@@ -22,7 +22,7 @@ const MyWork = () => {
   const {loggedIn} = useToken()
 
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const getWork = async () => {
     const res = await getData(`works/myworks/${id}`);
@@ -41,7 +41,7 @@ const MyWork = () => {
 
   return (
     <div className="work-page">
-      <WorkHeader work={work} />
+      <WorkHeader work={work} mywork={true} />
 
       <div className="part">
         {work?.parts && work.parts.length === 1 ? (

@@ -17,7 +17,7 @@ const AddTag = () => {
 
   const createTag = async (e) => {
     e.preventDefault();
-    console.log(name + "; " + category);
+    // console.log(name + "; " + category);
     const response = await postRequest("tags", { name });
     if (!response.success) {
       return alert(response.message);

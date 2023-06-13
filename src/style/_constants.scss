@@ -4,6 +4,7 @@ $greyblue: #d5e2ff;
 $white: white;
 $black: black;
 $red: #f76c6c;
+$light_red: #f58e8e;
 
 :root {
   --left_menu_width: 60px;
@@ -28,6 +29,26 @@ span.divider {
   height: 1px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.button {
+  background-color: $darkblue;
+  color: $white;
+  border: none;
+
+  &:hover {
+    background-color: $blue;
+  }
+}
+
+.buttontwo {
+  background-color: $red;
+  color: $white;
+  border: none;
+
+  &:hover {
+    background-color: $light_red;
+  }
 }
 
 @media screen and (max-width: 800px) {

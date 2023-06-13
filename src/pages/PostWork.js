@@ -12,9 +12,9 @@ const PostWork = () => {
 
   const [title, setTitle] = useState("");
 
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
 
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState(0);
 
   const [language, setLanguage] = useState("ru");
 
@@ -104,8 +104,8 @@ const PostWork = () => {
     e.preventDefault();
     const response = await postData("works", {
       title,
-      rating,
-      category,
+      rating: rating !== 0 ? rating : null,
+      category: category !== 0 ? category : null,
       lang: language,
       description,
       status,
@@ -152,6 +152,7 @@ const PostWork = () => {
                   value={rating}
                   onChange={(e) => setRating(e.target.value)}
                 >
+                  <option value={0}></option>
                   <option value={"G"}>Нет возрастных ограничений</option>
                   <option value={"PG"}>Не рекомендуется детям</option>
                   <option value={"PG_13"}>От 13 лет</option>
@@ -165,6 +166,7 @@ const PostWork = () => {
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
+                  <option value={0}></option>
                   <option value={"GEN"}>Нет любовных линий</option>
                   <option value={"F_M"}>Гет</option>
                   <option value={"M_M"}>ММ</option>
@@ -285,7 +287,7 @@ const PostWork = () => {
                   </datalist>
                   <Button
                     onClick={addFandom}
-                    className="mt-2 secondary-button"
+                    className="mt-2 button"
                     size="sm"
                     variant="secondary"
                   >
@@ -316,7 +318,7 @@ const PostWork = () => {
                   </datalist>
                   <Button
                     onClick={addTag}
-                    className="mt-2 secondary-button"
+                    className="mt-2 button"
                     size="sm"
                     variant="secondary"
                   >
@@ -369,7 +371,7 @@ const PostWork = () => {
                   <option value={"PUBLISHED"}>Опубликована</option>
                 </Form.Select>
               </Form.Group>
-              <Button className="submit-button" onClick={postWork}>
+              <Button className="button" onClick={postWork}>
                 Post New Work
               </Button>
             </Form>

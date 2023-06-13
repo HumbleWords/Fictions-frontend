@@ -41,21 +41,21 @@ const Admin = () => {
   async function getWorksList() {
     const res = await getData("works?skip=0&take=20&orderBy=asc");
     if (!res.success) return alert(res.message);
-    console.log({ res });
+    // console.log({ res });
     return setWorksList(res.data);
   }
 
   async function getFandomsList() {
     const res = await getData("fandoms?skip=0&take=20&orderBy=asc");
     if (!res.success) return alert(res.message);
-    console.log({ res });
+    // console.log({ res });
     return setFandomsList(res.data);
   }
 
   async function getTagsList() {
     const res = await getData("tags?skip=0&take=20&orderBy=asc");
     if (!res.success) return alert(res.message);
-    console.log({ res });
+    // console.log({ res });
     return setTagsList(res.data);
   }
 
