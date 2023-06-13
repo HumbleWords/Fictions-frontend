@@ -116,7 +116,6 @@ const Authors = () => {
       `works?skip=0&take=20&author=${id}&orderParam=updatedAt&orderBy=asc`
     );
     if (!res.success) return alert(res.message);
-    // console.log({ res });
     return setWorksList(res.data);
   }
 

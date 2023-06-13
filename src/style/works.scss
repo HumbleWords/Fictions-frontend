@@ -4,11 +4,9 @@ $greyblue: #d5e2ff;
 $white: white;
 
 .work-page {
-  // overflow: hidden;
   padding-left: 60px;
   padding-top: 50px;
   background-color: $greyblue;
-  // background-color: #C1C8E4;
   height: auto;
   padding-bottom: 20px;
   overflow: hidden;
@@ -32,25 +30,6 @@ $white: white;
     }
     ul {
       .card {
-        // width: 50vw;
-        // height: auto;
-        // margin-top: 20px;
-        // border-radius: 5px;
-
-        // display: flex;
-        // justify-content: center;
-        // align-items: flex-start;
-
-        // img {
-        //   width: 150px;
-        //   height: auto;
-        //   border-radius: 10px;
-        //   cursor: pointer;
-
-        //   display: block;
-        //   margin-left: auto;
-        //   margin-right: auto;
-        // }
 
         .container {
           height: auto;
@@ -207,10 +186,6 @@ $white: white;
           .container {
             display: block;
             align-items: flex-start;
-            ul {
-              .title {
-              }
-            }
           }
         }
       }

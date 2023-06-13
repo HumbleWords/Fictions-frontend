@@ -2,7 +2,6 @@ import { Button, Card } from "react-bootstrap";
 
 import { useNavigate } from "react-router";
 import { useContext, useEffect, useState } from "react";
-// import { getData } from "../utils/network";
 
 import "../style/profile.scss";
 import { UserContext } from "../App";

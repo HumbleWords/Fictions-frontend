@@ -7,8 +7,6 @@ import Nav from "react-bootstrap/Nav";
 
 import { Link } from "react-router-dom";
 
-// import vk from "../assets/vk.png";
-
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
 import { postData, getData } from "../utils/network";
@@ -34,7 +32,6 @@ const SignIn = () => {
       password,
     });
     if (res.success) {
-      // console.log({ res });
       localStorage.setItem("access_token", res.data.access_token);
       getData("users/me").then((response) => {
         if (response.success) {
@@ -88,10 +85,6 @@ const SignIn = () => {
           <button className="button" onClick={login}>
             Войти
           </button>
-
-          {/* <Button className="sign-button-vk" onClick={login}>
-            <img className="sign-vk" src={vk} /> Войти через ВК
-          </Button> */}
         </Form>
 
         <Nav.Link

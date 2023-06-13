@@ -30,14 +30,12 @@ const Home = () => {
       "works?skip=0&take=3&orderParam=updatedAt&orderBy=desc"
     );
     if (!res.success) return alert(res.message);
-    // console.log({ res });
     return setWorkList(res.data);
   }
 
   async function getFandomsList() {
     const res = await getData("fandoms?skip=0&take=10&orderBy=desc");
     if (!res.success) return alert(res.message);
-    // console.log({ res });
     return setFandomsList(res.data);
   }
 

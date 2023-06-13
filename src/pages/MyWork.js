@@ -22,7 +22,6 @@ const MyWork = () => {
   const {loggedIn} = useToken()
 
   const { id } = useParams();
-  // console.log(id);
 
   const getWork = async () => {
     const res = await getData(`works/myworks/${id}`);

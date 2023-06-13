@@ -3,7 +3,6 @@ import { Card, Col, Form, Row, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { getData } from "../utils/network";
 
-// import "../style/works.scss";
 import WorkCard from "../components/WorkCard";
 import { useSearchParams } from "react-router-dom";
 import useToken from "../hooks/useToken";
@@ -24,7 +23,6 @@ const Works = ({}) => {
       )}`
     );
     if (!res.success) return alert(res.message);
-    // console.log({ res });
     return setWorksList(res.data);
   }
 

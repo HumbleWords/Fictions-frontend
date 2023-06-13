@@ -372,7 +372,7 @@ const PostWork = () => {
                 </Form.Select>
               </Form.Group>
               <Button className="button" onClick={postWork}>
-                Post New Work
+                Создать работу
               </Button>
             </Form>
           </Card>

@@ -1,8 +1,6 @@
-import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import useToken from "../hooks/useToken";
-import { useEffect, useState, useContext } from "react";
-import { getData } from "../utils/network";
+import { useContext } from "react";
 import { UserContext } from "../App";
 
 import logo from "../assets/images/logo.png";
@@ -11,21 +9,8 @@ import profile from "../assets/images/profile.png";
 import "./style/header.scss";
 
 const Header = ({ active, setActive }) => {
-  // const [user, setUser] = useState({});
-  // const {role} = useRole();
   const { user, setUser } = useContext(UserContext);
   const { loggedIn } = useToken();
-
-  // const getUser = async () => {
-  //   const res = await getData("users/me");
-  //   if (!res.success) alert(res.message);
-  //   else setUser(res.data);
-  //   console.log({ res });
-  // };
-
-  // useEffect(() => {
-  //   if (loggedIn) getUser();
-  // }, []);
 
   return (
     <Navbar className="nav">

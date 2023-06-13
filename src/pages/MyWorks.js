@@ -2,12 +2,10 @@ import { Card, Col, Form, Row, Button } from "react-bootstrap";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import { getData } from "../utils/network";
 
 import "./style/works.scss";
 
-import useToken from "../hooks/useToken";
 import WorkCard from "../components/WorkCard";
 
 const MyWorks = ({}) => {
@@ -21,7 +19,6 @@ const MyWorks = ({}) => {
       `works/myworks?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}`
     );
     if (!res.success) return alert(res.message);
-    // console.log({ res });
     return setWorksList(res.data);
   }
 
