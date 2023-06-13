@@ -6,17 +6,22 @@ import { getData } from "../utils/network";
 // import "../style/works.scss";
 import WorkCard from "../components/WorkCard";
 import { useSearchParams } from "react-router-dom";
+import useToken from "../hooks/useToken";
 
 const Works = ({}) => {
   const [WorksList, setWorksList] = useState([]);
   const [orderParam, setOrderParam] = useState("updatedAt");
   const [orderBy, setOrderBy] = useState("desc");
 
-  const [searchParams, setSearchParams] = useSearchParams()
+  const { id, loggedIn } = useToken();
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   async function getWorksList() {
     const res = await getData(
-      `works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}&search=${searchParams.get("search")}`
+      `works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}&search=${searchParams.get(
+        "search"
+      )}`
     );
     if (!res.success) return alert(res.message);
     console.log({ res });
@@ -30,7 +35,7 @@ const Works = ({}) => {
   return (
     <div className="work-page">
       <Row>
-        <Col xs={{order: "last", span: 12}} lg={4}>
+        <Col xs={{ order: "last", span: 12 }} lg={4}>
           <div className="sort">
             <Card className="card">
               <Card.Body>
@@ -87,14 +92,20 @@ const Works = ({}) => {
             </Card>
           </div>
         </Col>
-        
+
         <Col xs={12} lg={8}>
           <div className="list">
-              {WorksList ? (
-                WorksList.map((work, index) => <WorkCard key={index} work={work} />)
-              ) : (
-                <p>Работ нет</p>
-              )}
+            {WorksList ? (
+              WorksList.map((work, index) => (
+                <WorkCard
+                  key={index}
+                  work={work}
+                  mywork={loggedIn ? work.authorId === id : false}
+                />
+              ))
+            ) : (
+              <p>Работ нет</p>
+            )}
           </div>
         </Col>
       </Row>
