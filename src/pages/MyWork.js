@@ -11,7 +11,7 @@ import WorkHeader from "../components/WorkHeader";
 import WorkPart from "../components/WorkPart";
 import decodeHtml from "../utils/decodeHtml";
 import useToken from "../hooks/useToken";
-import CommentForm from "../components/CommentForm";
+import CommentForm from "../components/MyCommentForm";
 
 export const CommentContext = React.createContext([])
 

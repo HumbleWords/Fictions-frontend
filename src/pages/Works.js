@@ -8,19 +8,31 @@ import { useSearchParams } from "react-router-dom";
 import useToken from "../hooks/useToken";
 
 const Works = ({}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [WorksList, setWorksList] = useState([]);
-  const [orderParam, setOrderParam] = useState("updatedAt");
-  const [orderBy, setOrderBy] = useState("desc");
+  const [orderParam, setOrderParam] = useState(searchParams.get("orderParam") || "updatedAt");
+  const [orderBy, setOrderBy] = useState(searchParams.get("orderBy") || "desc");
 
   const { id, loggedIn } = useToken();
 
-  const [searchParams, setSearchParams] = useSearchParams();
 
   async function getWorksList() {
+    console.log(decodeURI(`works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}&search=${
+      searchParams.get("search") || ""
+    }&title=${searchParams.get("title") || ""}&author=${
+      searchParams.get("author") || ""
+    }&tags=${searchParams.get("tags") || ""}&fandoms=${
+      searchParams.get("fandoms") || ""
+    }`))
     const res = await getData(
-      `works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}&search=${searchParams.get(
-        "search"
-      )}`
+      decodeURI(`works?skip=0&take=20&orderBy=${orderBy}&orderParam=${orderParam}&search=${
+        searchParams.get("search") || ""
+      }&title=${searchParams.get("title") || ""}&author=${
+        searchParams.get("author") || ""
+      }&tags=${searchParams.get("tags") || ""}&fandoms=${
+        searchParams.get("fandoms") || ""
+      }`)
     );
     if (!res.success) return alert(res.message);
     return setWorksList(res.data);
